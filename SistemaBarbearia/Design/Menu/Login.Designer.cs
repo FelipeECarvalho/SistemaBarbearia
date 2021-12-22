@@ -137,9 +137,9 @@ namespace SistemaBarbearia
 			this.label6.ForeColor = System.Drawing.Color.Goldenrod;
 			this.label6.Location = new System.Drawing.Point(183, 57);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(150, 27);
+			this.label6.Size = new System.Drawing.Size(161, 27);
 			this.label6.TabIndex = 11;
-			this.label6.Text = "Cortamos cabelos";
+			this.label6.Text = "Barbearia padrão";
 			// 
 			// label3
 			// 
