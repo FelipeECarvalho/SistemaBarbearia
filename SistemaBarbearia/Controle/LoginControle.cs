@@ -8,7 +8,7 @@ namespace SistemaBarbearia.Controle
 {
 	class LoginControle
 	{
-		LoginComandos loginComandos = new LoginComandos();
+		LoginRepositorio loginComandos = new LoginRepositorio();
 
 
 		public LoginControle()

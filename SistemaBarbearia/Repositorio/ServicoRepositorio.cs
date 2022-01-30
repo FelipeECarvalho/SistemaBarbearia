@@ -6,10 +6,10 @@ using System.Text;
 
 namespace SistemaBarbearia.DAL
 {
-	class ServicoComandos
+	class ServicoRepositorio
 	{
 		SqlCommand cmd = new SqlCommand();
-		Conexao con = new Conexao();
+		Database con = new Database();
 
 
 		public List<Servico> GetAllServicos()

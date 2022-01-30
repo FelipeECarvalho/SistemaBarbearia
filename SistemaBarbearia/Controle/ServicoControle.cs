@@ -8,7 +8,7 @@ namespace SistemaBarbearia.Controle
 {
 	class ServicoControle
 	{
-		ServicoComandos servicoComandos = new ServicoComandos();
+		ServicoRepositorio servicoComandos = new ServicoRepositorio();
 
 		public ServicoControle()
 		{

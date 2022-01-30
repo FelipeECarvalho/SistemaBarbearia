@@ -8,10 +8,10 @@ using System.Globalization;
 
 namespace SistemaBarbearia.DAL
 {
-	class LoginComandos
+	class LoginRepositorio
 	{
 		SqlCommand cmd = new SqlCommand();
-		Conexao con = new Conexao();
+		Database con = new Database();
 
 		public Administrador AcessoAdm(string usuario, string senha)
 		{

@@ -8,11 +8,11 @@ using System.Text;
 
 namespace SistemaBarbearia.DAL
 {
-	class AgendamentoComandos
+	class AgendamentoRepositorio
 	{
 		SqlCommand cmd = new SqlCommand();
-		Conexao con = new Conexao();
-		ClienteComandos clienteCmd = new ClienteComandos();
+		Database con = new Database();
+		ClienteRepositorio clienteCmd = new ClienteRepositorio();
 
 
 		public void InserirAgendamento(string cpf, DateTime data, decimal valor, List<Servico> servicos)

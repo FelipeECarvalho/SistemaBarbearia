@@ -10,7 +10,7 @@ namespace SistemaBarbearia.Controle
 {
 	class ClienteControle
 	{
-		ClienteComandos clienteComandos = new ClienteComandos();
+		ClienteRepositorio clienteComandos = new ClienteRepositorio();
 
 		public ClienteControle()
 		{

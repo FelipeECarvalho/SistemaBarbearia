@@ -1,31 +1,17 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SistemaBarbearia.Modelo
 {
+	[Table("Cliente")]
 	public class Cliente
 	{
-		public string Nome { get; }
+		public int Id { get;  }
 		public string Cpf { get; }
-		public string Email { get; }
+		public string Nome { get; }
 		public string Telefone { get; }
-
-		public Cliente() 
-		{
-		}
-
-		public Cliente(string cpf, string nome, string telefone, string email)
-		{
-			Nome = nome;
-			Cpf = cpf;
-			Email = email;
-			Telefone = telefone;
-		}
-
-		public override string ToString()
-		{
-			return $"{Nome} - {Telefone}";
-		}
+		public string Email { get; }
 	}
 }

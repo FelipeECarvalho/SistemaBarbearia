@@ -9,7 +9,7 @@ namespace SistemaBarbearia.Controle
 {
 	class AgendamentoControle
 	{
-		AgendamentoComandos agendamentoComandos = new AgendamentoComandos();
+		AgendamentoRepositorio agendamentoComandos = new AgendamentoRepositorio();
 
 		public AgendamentoControle()
 		{

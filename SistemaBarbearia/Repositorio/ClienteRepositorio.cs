@@ -7,10 +7,10 @@ using System.Text;
 
 namespace SistemaBarbearia.DAL
 {
-	class ClienteComandos
+	class ClienteRepositorio
 	{
 		SqlCommand cmd = new SqlCommand();
-		Conexao con = new Conexao();
+		Database con = new Database();
 
 		public void CadastrarCliente(string cpf, string nome, string telefone, string email)
 		{
