@@ -42,11 +42,5 @@ namespace SistemaBarbearia.Controle
 		{
 			return agendamentoComandos.GetAgendamento(data);
 		}
-
-		public void ExcluirAgendamento(DateTime data)
-		{
-			agendamentoComandos.ExcluirAgendamento(data);
-		}
-
 	}
 }
