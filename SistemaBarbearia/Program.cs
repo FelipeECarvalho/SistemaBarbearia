@@ -1,3 +1,4 @@
+using SistemaBarbearia.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace SistemaBarbearia
 {
 	static class Program
 	{
+		public static Administrador Adm;
+
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>

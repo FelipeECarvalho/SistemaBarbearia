@@ -29,8 +29,8 @@ namespace SistemaBarbearia.Design
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblAgendar = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lblNome = new System.Windows.Forms.Label();
@@ -80,7 +80,6 @@ namespace SistemaBarbearia.Design
 			this.lblNome.Size = new System.Drawing.Size(49, 22);
 			this.lblNome.TabIndex = 1;
 			this.lblNome.Text = "Olá, ";
-			this.lblNome.Click += new System.EventHandler(this.lblNome_Click);
 			// 
 			// lblInicio
 			// 
@@ -92,7 +91,6 @@ namespace SistemaBarbearia.Design
 			this.lblInicio.Size = new System.Drawing.Size(53, 20);
 			this.lblInicio.TabIndex = 5;
 			this.lblInicio.Text = "Inicio";
-			this.lblInicio.Click += new System.EventHandler(this.lblInicio_Click);
 			// 
 			// label1
 			// 
@@ -101,7 +99,6 @@ namespace SistemaBarbearia.Design
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(794, 65);
 			this.label1.TabIndex = 0;
-			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// lblCliente
 			// 
@@ -167,27 +164,27 @@ namespace SistemaBarbearia.Design
 			this.dgvAgendamentos.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvAgendamentos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
 			this.dgvAgendamentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvAgendamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvAgendamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
 			this.dgvAgendamentos.ColumnHeadersHeight = 30;
 			this.dgvAgendamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgvAgendamentos.EnableHeadersVisualStyles = false;
 			this.dgvAgendamentos.Location = new System.Drawing.Point(510, 174);
 			this.dgvAgendamentos.Name = "dgvAgendamentos";
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvAgendamentos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle8.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvAgendamentos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this.dgvAgendamentos.RowHeadersVisible = false;
 			this.dgvAgendamentos.RowTemplate.Height = 25;
 			this.dgvAgendamentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
