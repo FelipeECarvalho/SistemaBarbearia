@@ -8,12 +8,7 @@ namespace SistemaBarbearia.Controle
 {
 	class ClienteControle : ControleBase
 	{
-		private readonly RepositorioBase<Cliente> _repositorio;
-
-		public ClienteControle()
-		{
-			_repositorio = new RepositorioBase<Cliente>();
-		}
+		private readonly ClienteRepositorio _clienteRepositorio;
 
 		public void Create(Cliente cliente)
 		{
@@ -21,8 +16,15 @@ namespace SistemaBarbearia.Controle
 			{
 				using (var conexao = new Conexao())
 				{
-					_repositorio.Create(cliente);
+					_clienteRepositorio.Create(cliente);
 				}
+			}
+		}
+		public Cliente Get(string cpf)
+		{
+			using (var conexao = new Conexao())
+			{
+				return _clienteRepositorio.Get(cpf);
 			}
 		}
 
@@ -30,7 +32,7 @@ namespace SistemaBarbearia.Controle
 		{
 			using (var conexao = new Conexao())
 			{
-				return _repositorio.Get();
+				return _clienteRepositorio.Get();
 			}
 		}
 
@@ -38,31 +40,8 @@ namespace SistemaBarbearia.Controle
 		{
 			using (var conexao = new Conexao())
 			{
-				var clientes = _repositorio.Get().ToList();
-				return _repositorio.GetDataTable(clientes);
-			}
-		}
-
-		public void Delete(int id)
-		{
-			using (var conexao = new Conexao())
-			{
-				_repositorio.Delete(id);
-			}
-		}
-		public void Delete(Cliente cliente) 
-		{
-			using (var conexao = new Conexao())
-			{
-				_repositorio.Delete(cliente);
-			}
-		}
-
-		public Cliente Get(int id)
-		{
-			using (var conexao = new Conexao())
-			{
-				return _repositorio.Get(id);
+				var clientes = _clienteRepositorio.Get().ToList();
+				return _clienteRepositorio.GetDataTable(clientes);
 			}
 		}
 
@@ -70,8 +49,22 @@ namespace SistemaBarbearia.Controle
 		{
 			using (var conexao = new Conexao())
 			{
-				_repositorio.Update(cliente);
+				_clienteRepositorio.Update(cliente);
 			}
 		}
+
+		public void Delete(Cliente cliente) 
+		{
+			using (var conexao = new Conexao())
+			{
+				_clienteRepositorio.Delete(cliente);
+			}
+		}
+
+		public ClienteControle()
+		{
+			_clienteRepositorio = new ClienteRepositorio();
+		}
+
 	}
 }

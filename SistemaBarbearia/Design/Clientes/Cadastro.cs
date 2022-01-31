@@ -12,16 +12,12 @@ namespace SistemaBarbearia.Design
 {
 	public partial class frmCadastro : Form
 	{
-		ClienteControle controle = new ClienteControle();
+		private ClienteControle _clienteControle;
 
 		public frmCadastro()
 		{
 			InitializeComponent();
-		}
-
-		private void label5_Click(object sender, EventArgs e)
-		{
-
+			_clienteControle = new ClienteControle();
 		}
 
 		private void txbCancelar_Click(object sender, EventArgs e)
@@ -31,36 +27,14 @@ namespace SistemaBarbearia.Design
 
 		private void btnCadastro_Click(object sender, EventArgs e)
 		{
-			txbTelefone.Text = txbTelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+			var cliente = new Cliente(txbCPF.Text.Trim(), txbNome.Text.ToLower().Trim(), txbTelefone.Text, txbEmail.Text.Trim());
 
-			txbCPF.Text = txbCPF.Text.Replace(".", "").Replace("-", "").Replace(" ", "");
-
-			controle.Cadastrar(txbCPF.Text.Trim(), txbNome.Text.Trim(), txbTelefone.Text.Trim(), txbEmail.Text.Trim());
+			_clienteControle.Create(cliente);
 
 			MessageBox.Show("Cliente cadastrado com sucesso", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			this.DialogResult = DialogResult.OK;
 			this.Close();
 		}
 
-
-		private void txbEmail_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void txbNome_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void frmCadastro_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void txbTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-		{
-
-		}
 	}
 }

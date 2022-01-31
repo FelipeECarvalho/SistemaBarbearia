@@ -76,6 +76,7 @@ namespace SistemaBarbearia
 			this.txbSenha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txbSenha.Location = new System.Drawing.Point(168, 346);
 			this.txbSenha.Name = "txbSenha";
+			this.txbSenha.PasswordChar = '*';
 			this.txbSenha.Size = new System.Drawing.Size(194, 23);
 			this.txbSenha.TabIndex = 3;
 			this.txbSenha.UseSystemPasswordChar = true;

@@ -12,30 +12,32 @@ namespace SistemaBarbearia.Design
 {
 	public partial class frmEscolherCliente : Form
 	{
-		ClienteControle controle = new ClienteControle();
+		private	ClienteControle _clienteControle;
 		public string RetornarCpfCliente { get; set; }
 
 
 		public frmEscolherCliente()
 		{
 			InitializeComponent();
+			_clienteControle = new ClienteControle();
 		}
 
 		private void txtBuscaCliente_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (e.KeyChar == (char)13)
 			{
-				DataView dv = controle.GetClienteTable().DefaultView;
-				dv.RowFilter = string.Format("NOME LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "%'");
+				DataView dv = _clienteControle.GetDataTable().DefaultView;
+
+				dv.RowFilter = string.Format("Nome LIKE '%@Busca%' OR CPF LIKE '%@Busca%'", new { @Busca = txtBuscaCliente.Text });
+
 				dgvClientes.DataSource = dv.Table;
 			}
 		}
 
 		private void EscolherCliente_Load(object sender, EventArgs e)
 		{
-			dgvClientes.DataSource = controle.GetClienteTable();
+			dgvClientes.DataSource = _clienteControle.GetDataTable();
 			dgvClientes.AutoGenerateColumns = true;
-
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
@@ -52,11 +54,6 @@ namespace SistemaBarbearia.Design
 			}
 			this.DialogResult = DialogResult.OK;
 			this.Close();
-
-		}
-
-		private void txtBuscaCliente_TextChanged(object sender, EventArgs e)
-		{
 
 		}
 	}
