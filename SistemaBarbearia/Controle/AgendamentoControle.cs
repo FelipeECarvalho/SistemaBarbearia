@@ -1,46 +1,60 @@
-﻿using SistemaBarbearia.DAL;
-using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Modelo;
+using SistemaBarbearia.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
+using System.Linq;
 
 namespace SistemaBarbearia.Controle
 {
-	class AgendamentoControle
+	class AgendamentoControle : ControleBase
 	{
-		AgendamentoRepositorio agendamentoComandos = new AgendamentoRepositorio();
+		private readonly AgendamentoRepositorio _agendamentoRepositorio;
 
 		public AgendamentoControle()
 		{
+			_agendamentoRepositorio = new AgendamentoRepositorio();
 		}
 
-		public bool InserirAgendamento(string cpf, DateTime data, decimal valor, List<Servico> servicos)
+		public void Create(Agendamento agendamento)
 		{
-			if (DateTime.Now.Date > data.Date || servicos.Count == 0 || string.IsNullOrEmpty(cpf))
+			using (var conexao = new Conexao())
 			{
-				return false;
-			}
-			else
-			{
-				agendamentoComandos.InserirAgendamento(cpf, data, valor, servicos);
-				return true;
+				_agendamentoRepositorio.Create(agendamento);
 			}
 		}
 
-		public List<DateTime> GetDatas(DateTime data)
+		public IEnumerable<DateTime> GetDatas(DateTime data)
 		{
-			return agendamentoComandos.GetDatas(data);
+			using (var conexao = new Conexao())
+			{
+				return _agendamentoRepositorio.GetDatas(data);
+			}
 		}
 
 		public DataTable GetAgendamentoTable(string data = null)
 		{
-			return agendamentoComandos.AgendamentoDataTable(data);
+			IEnumerable<Agendamento> agendamentos;
+			using (var conexao = new Conexao())
+			{
+				if (data == null)
+				{
+					agendamentos = _agendamentoRepositorio.Get();
+				}
+				else 
+				{
+					agendamentos = _agendamentoRepositorio.GetAll(DateTime.Parse(data));
+				}
+				return _agendamentoRepositorio.GetDataTable(agendamentos.ToList());
+			}
 		}
 
 		public Agendamento GetAgendamento(DateTime data)
 		{
-			return agendamentoComandos.GetAgendamento(data);
+			using (var conexao = new Conexao())
+			{
+				return  _agendamentoRepositorio.Get(data);
+			}
 		}
 	}
 }

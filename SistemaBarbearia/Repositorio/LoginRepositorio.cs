@@ -11,7 +11,7 @@ namespace SistemaBarbearia.Repositorio
 {
 	class LoginRepositorio : RepositorioBase<Administrador>
 	{
-		public Administrador AcessoAdm(string usuario, string senha)
+		public Administrador Acessar(string usuario, string senha)
 		{
 			var query = "SELECT * FROM [Administrador] WHERE [Usuario] = @Usuario AND [Senha] = @Senha";
 			var param = new { @Usuario = usuario, @Senha = senha };

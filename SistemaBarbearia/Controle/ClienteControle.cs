@@ -1,60 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SistemaBarbearia.Exception;
-using SistemaBarbearia.DAL;
+﻿using System.Collections.Generic;
 using SistemaBarbearia.Modelo;
 using System.Data;
+using SistemaBarbearia.Repositorio;
+using System.Linq;
 
 namespace SistemaBarbearia.Controle
 {
-	class ClienteControle
+	class ClienteControle : ControleBase
 	{
-		ClienteRepositorio clienteComandos = new ClienteRepositorio();
+		private readonly RepositorioBase<Cliente> _repositorio;
 
 		public ClienteControle()
 		{
+			_repositorio = new RepositorioBase<Cliente>();
 		}
 
-		public void Cadastrar(string cpf, string nome, string telefone, string email)
+		public void Create(Cliente cliente)
 		{
-			if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(telefone))
+			if (!(cliente == null))
 			{
-				throw new BdCadastroException("Erro ao cadastrar, verifique os valores");
+				using (var conexao = new Conexao())
+				{
+					_repositorio.Create(cliente);
+				}
 			}
-			clienteComandos.CadastrarCliente(cpf, nome, telefone, email);
 		}
 
-		public List<Cliente> GetAllClientes()
+		public IEnumerable<Cliente> GetAll()
 		{
-			return clienteComandos.GetAllClientes();
-		}
-
-		public DataTable GetClienteTable()
-		{
-			return clienteComandos.ClienteDataTable();
-		}
-
-		public void ExcluirCliente(string cpf)
-		{
-			clienteComandos.ExcluirCliente(cpf);
-		}
-
-		public Cliente GetCliente(string cpf)
-		{
-			return clienteComandos.GetCliente(cpf);
-		}
-
-		public bool UpdateCliente(string cpf, string nome, string telefone, string email)
-		{
-			if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(telefone))
+			using (var conexao = new Conexao())
 			{
-				return false;
+				return _repositorio.Get();
 			}
-			else
+		}
+
+		public DataTable GetDataTable()
+		{
+			using (var conexao = new Conexao())
 			{
-				clienteComandos.UpdateCliente(cpf, nome, telefone, email);
-				return true;
+				var clientes = _repositorio.Get().ToList();
+				return _repositorio.GetDataTable(clientes);
+			}
+		}
+
+		public void Delete(int id)
+		{
+			using (var conexao = new Conexao())
+			{
+				_repositorio.Delete(id);
+			}
+		}
+		public void Delete(Cliente cliente) 
+		{
+			using (var conexao = new Conexao())
+			{
+				_repositorio.Delete(cliente);
+			}
+		}
+
+		public Cliente Get(int id)
+		{
+			using (var conexao = new Conexao())
+			{
+				return _repositorio.Get(id);
+			}
+		}
+
+		public void Update(Cliente cliente)
+		{
+			using (var conexao = new Conexao())
+			{
+				_repositorio.Update(cliente);
 			}
 		}
 	}
