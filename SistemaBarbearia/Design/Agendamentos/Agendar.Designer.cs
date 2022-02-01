@@ -51,6 +51,7 @@ namespace SistemaBarbearia.Design
 			this.btnHorario = new System.Windows.Forms.Button();
 			this.lblData = new System.Windows.Forms.Label();
 			this.lblAgendamentos = new System.Windows.Forms.Label();
+			this.lblHorario = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
@@ -88,7 +89,6 @@ namespace SistemaBarbearia.Design
 			this.lblAgendar.Size = new System.Drawing.Size(75, 20);
 			this.lblAgendar.TabIndex = 7;
 			this.lblAgendar.Text = "Agendar";
-			this.lblAgendar.Click += new System.EventHandler(this.lblAgendar_Click);
 			// 
 			// label2
 			// 
@@ -139,17 +139,17 @@ namespace SistemaBarbearia.Design
 			this.txbNome.ReadOnly = true;
 			this.txbNome.Size = new System.Drawing.Size(244, 25);
 			this.txbNome.TabIndex = 24;
-			this.txbNome.TextChanged += new System.EventHandler(this.txbNome_TextChanged);
 			// 
 			// dtpData
 			// 
 			this.dtpData.CustomFormat = "";
 			this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
 			this.dtpData.Location = new System.Drawing.Point(209, 235);
+			this.dtpData.MaxDate = new System.DateTime(2023, 12, 31, 0, 0, 0, 0);
+			this.dtpData.MinDate = new System.DateTime(2021, 12, 31, 0, 0, 0, 0);
 			this.dtpData.Name = "dtpData";
 			this.dtpData.Size = new System.Drawing.Size(107, 23);
 			this.dtpData.TabIndex = 26;
-			this.dtpData.ValueChanged += new System.EventHandler(this.dtpData_ValueChanged);
 			// 
 			// label1
 			// 
@@ -181,14 +181,13 @@ namespace SistemaBarbearia.Design
 			this.cklServicos.Name = "cklServicos";
 			this.cklServicos.Size = new System.Drawing.Size(192, 100);
 			this.cklServicos.TabIndex = 29;
-			this.cklServicos.SelectedIndexChanged += new System.EventHandler(this.cklServicos_SelectedIndexChanged);
 			// 
 			// btnAgendar
 			// 
 			this.btnAgendar.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.btnAgendar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAgendar.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.btnAgendar.Location = new System.Drawing.Point(634, 380);
+			this.btnAgendar.Location = new System.Drawing.Point(633, 337);
 			this.btnAgendar.Name = "btnAgendar";
 			this.btnAgendar.Size = new System.Drawing.Size(128, 56);
 			this.btnAgendar.TabIndex = 33;
@@ -234,12 +233,11 @@ namespace SistemaBarbearia.Design
 			// 
 			this.lblTotal.AutoSize = true;
 			this.lblTotal.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.lblTotal.Location = new System.Drawing.Point(525, 444);
+			this.lblTotal.Location = new System.Drawing.Point(521, 411);
 			this.lblTotal.Name = "lblTotal";
 			this.lblTotal.Size = new System.Drawing.Size(65, 16);
 			this.lblTotal.TabIndex = 37;
 			this.lblTotal.Text = "Total: R$";
-			this.lblTotal.Click += new System.EventHandler(this.lblTotal_Click);
 			// 
 			// lboServicosEscolhidos
 			// 
@@ -250,7 +248,7 @@ namespace SistemaBarbearia.Design
 			this.lboServicosEscolhidos.ItemHeight = 16;
 			this.lboServicosEscolhidos.Location = new System.Drawing.Point(587, 216);
 			this.lboServicosEscolhidos.Name = "lboServicosEscolhidos";
-			this.lboServicosEscolhidos.Size = new System.Drawing.Size(192, 96);
+			this.lboServicosEscolhidos.Size = new System.Drawing.Size(192, 112);
 			this.lboServicosEscolhidos.TabIndex = 38;
 			// 
 			// label6
@@ -278,12 +276,11 @@ namespace SistemaBarbearia.Design
 			// 
 			this.lblData.AutoSize = true;
 			this.lblData.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.lblData.Location = new System.Drawing.Point(525, 475);
+			this.lblData.Location = new System.Drawing.Point(521, 442);
 			this.lblData.Name = "lblData";
 			this.lblData.Size = new System.Drawing.Size(40, 16);
 			this.lblData.TabIndex = 41;
 			this.lblData.Text = "Data:";
-			this.lblData.Click += new System.EventHandler(this.lblData_Click);
 			// 
 			// lblAgendamentos
 			// 
@@ -297,11 +294,22 @@ namespace SistemaBarbearia.Design
 			this.lblAgendamentos.Text = "Agendamentos";
 			this.lblAgendamentos.Click += new System.EventHandler(this.lblAgendamentos_Click);
 			// 
+			// lblHorario
+			// 
+			this.lblHorario.AutoSize = true;
+			this.lblHorario.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.lblHorario.Location = new System.Drawing.Point(521, 475);
+			this.lblHorario.Name = "lblHorario";
+			this.lblHorario.Size = new System.Drawing.Size(59, 16);
+			this.lblHorario.TabIndex = 43;
+			this.lblHorario.Text = "Horário:";
+			// 
 			// frmAgendar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(791, 511);
+			this.Controls.Add(this.lblHorario);
 			this.Controls.Add(this.lblAgendamentos);
 			this.Controls.Add(this.lblData);
 			this.Controls.Add(this.btnHorario);
@@ -357,5 +365,6 @@ namespace SistemaBarbearia.Design
 		private System.Windows.Forms.Button btnHorario;
 		private System.Windows.Forms.Label lblData;
 		private System.Windows.Forms.Label lblAgendamentos;
+		private System.Windows.Forms.Label lblHorario;
 	}
 }

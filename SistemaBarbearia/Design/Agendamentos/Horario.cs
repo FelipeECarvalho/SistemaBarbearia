@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -13,25 +14,25 @@ namespace SistemaBarbearia.Design
 {
 	public partial class frmHorario : Form
 	{
-		AgendamentoControle controle = new AgendamentoControle();
-		private DateTime _dia { get; set; }
-		public DateTime RetornoData { get; set; }
+		AgendamentoControle _agendamentoControle;
+		public int RetornoHorario { get; set; }
+
+		private DateTime _dataEscolhida;
 
 
-		public frmHorario()
+		public frmHorario(DateTime data)
 		{
 			InitializeComponent();
+			_agendamentoControle = new AgendamentoControle();
+			_dataEscolhida = data;
 		}
 
-		public frmHorario(DateTime dia) : this()
-		{
-			_dia = dia;
-		}
 
 		private void frmHorario_Load(object sender, EventArgs e)
 		{
-			List<DateTime> horariosOcupados = controle.GetDatas(_dia);
-			List<Button> buttons = new List<Button>
+			var horariosOcupados = _agendamentoControle.GetDatas(_dataEscolhida);
+
+			var buttons = new List<Button>
 			{
 				btn1,
 				btn2,
@@ -43,18 +44,17 @@ namespace SistemaBarbearia.Design
 				btn8,
 				btn9
 			};
-			foreach (Button btn in buttons) 
+
+			foreach (var button in buttons) 
 			{
-				string[] horaMin = btn.Text.Split(":");
-				DateTime h = new DateTime(01, 01, 01, int.Parse(horaMin[0]), 00, 00);
-
-				foreach (DateTime horario in horariosOcupados)
-
+				var horaMin = int.Parse(button.Text.Substring(0, 2));
+				
+				foreach (var horario in horariosOcupados)
 				{
-					if (h.Hour == horario.Hour)
+					if (horaMin == horario.Hour)
 					{
-						btn.BackColor = Color.Silver;
-						btn.Enabled = false;
+						button.BackColor = Color.Silver;
+						button.Enabled = false;
 					}
 				}
 			}
@@ -62,13 +62,9 @@ namespace SistemaBarbearia.Design
 
 		private void GeraData(Button button)
 		{
-			string[] horaMin = button.Text.Split(":");
-			DateTime h = new DateTime(01, 01, 01, int.Parse(horaMin[0]), 00, 00);
-
-			RetornoData = new DateTime(_dia.Year, _dia.Month, _dia.Day, h.Hour, 00, 00);
+			int horaMin = int.Parse(button.Text.Substring(0, 2));
+			RetornoHorario = horaMin;
 			this.DialogResult = DialogResult.OK;
-
-
 		}
 
 		private void btn1_Click(object sender, EventArgs e)

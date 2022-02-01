@@ -72,7 +72,6 @@ namespace SistemaBarbearia.Design
 			this.txbNome.Name = "txbNome";
 			this.txbNome.Size = new System.Drawing.Size(263, 23);
 			this.txbNome.TabIndex = 2;
-			this.txbNome.TextChanged += new System.EventHandler(this.txbNome_TextChanged);
 			// 
 			// label3
 			// 
@@ -91,7 +90,6 @@ namespace SistemaBarbearia.Design
 			this.txbEmail.Name = "txbEmail";
 			this.txbEmail.Size = new System.Drawing.Size(260, 23);
 			this.txbEmail.TabIndex = 4;
-			this.txbEmail.TextChanged += new System.EventHandler(this.txbEmail_TextChanged);
 			// 
 			// label4
 			// 
@@ -109,11 +107,12 @@ namespace SistemaBarbearia.Design
 			this.txbCPF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txbCPF.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.txbCPF.Location = new System.Drawing.Point(136, 214);
-			this.txbCPF.Mask = "000,000,000-00";
+			this.txbCPF.Mask = "000.000.000-00";
 			this.txbCPF.Name = "txbCPF";
 			this.txbCPF.ShortcutsEnabled = false;
 			this.txbCPF.Size = new System.Drawing.Size(139, 29);
 			this.txbCPF.TabIndex = 8;
+			this.txbCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			// 
 			// btnCadastro
 			// 
@@ -163,7 +162,7 @@ namespace SistemaBarbearia.Design
 			this.txbTelefone.ShortcutsEnabled = false;
 			this.txbTelefone.Size = new System.Drawing.Size(194, 29);
 			this.txbTelefone.TabIndex = 16;
-			this.txbTelefone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txbTelefone_MaskInputRejected);
+			this.txbTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			// 
 			// frmCadastro
 			// 
@@ -184,7 +183,6 @@ namespace SistemaBarbearia.Design
 			this.Controls.Add(this.label1);
 			this.Name = "frmCadastro";
 			this.Text = "Cadastro";
-			this.Load += new System.EventHandler(this.frmCadastro_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

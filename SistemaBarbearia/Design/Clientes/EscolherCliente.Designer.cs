@@ -46,7 +46,6 @@ namespace SistemaBarbearia.Design
 			this.txtBuscaCliente.PlaceholderText = "Nome ou Cpf";
 			this.txtBuscaCliente.Size = new System.Drawing.Size(179, 27);
 			this.txtBuscaCliente.TabIndex = 24;
-			this.txtBuscaCliente.TextChanged += new System.EventHandler(this.txtBuscaCliente_TextChanged);
 			this.txtBuscaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaCliente_KeyPress);
 			// 
 			// label4

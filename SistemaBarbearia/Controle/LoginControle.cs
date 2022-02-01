@@ -1,24 +1,26 @@
-﻿using SistemaBarbearia.DAL;
+﻿using SistemaBarbearia.Exception;
 using SistemaBarbearia.Modelo;
+using SistemaBarbearia.Repositorio;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {
-	class LoginControle
+	class LoginControle : ControleBase
 	{
-		LoginComandos loginComandos = new LoginComandos();
-
+		private readonly LoginRepositorio _loginRepositorio;
 
 		public LoginControle()
 		{
+			_loginRepositorio = new LoginRepositorio();
 		}
 
 		public Administrador Login(string login, string senha)
 		{
-			Administrador adm = loginComandos.AcessoAdm(login, senha);
-			return adm;
+			using (var conexao = new Conexao())
+			{
+				return _loginRepositorio.Acessar(login, senha);
+			}
 		}
 	}
 }

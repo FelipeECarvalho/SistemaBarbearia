@@ -51,7 +51,7 @@ namespace SistemaBarbearia
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(69, 21);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Usuario";
+			this.label1.Text = "Usuário";
 			// 
 			// label2
 			// 
@@ -70,17 +70,16 @@ namespace SistemaBarbearia
 			this.txbUsuario.Name = "txbUsuario";
 			this.txbUsuario.Size = new System.Drawing.Size(194, 23);
 			this.txbUsuario.TabIndex = 2;
-			this.txbUsuario.TextChanged += new System.EventHandler(this.txbEmail_TextChanged);
 			// 
 			// txbSenha
 			// 
 			this.txbSenha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txbSenha.Location = new System.Drawing.Point(168, 346);
 			this.txbSenha.Name = "txbSenha";
+			this.txbSenha.PasswordChar = '*';
 			this.txbSenha.Size = new System.Drawing.Size(194, 23);
 			this.txbSenha.TabIndex = 3;
 			this.txbSenha.UseSystemPasswordChar = true;
-			this.txbSenha.TextChanged += new System.EventHandler(this.txbSenha_TextChanged);
 			// 
 			// btnEntrar
 			// 
@@ -106,7 +105,6 @@ namespace SistemaBarbearia
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 6;
 			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// btnSair
 			// 
@@ -171,7 +169,6 @@ namespace SistemaBarbearia
 			this.Controls.Add(this.label1);
 			this.Name = "frmLogin";
 			this.Text = "Login";
-			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

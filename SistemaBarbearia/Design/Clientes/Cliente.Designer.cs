@@ -29,9 +29,9 @@ namespace SistemaBarbearia.Design
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblCliente = new System.Windows.Forms.Label();
 			this.lblInicio = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -65,7 +65,6 @@ namespace SistemaBarbearia.Design
 			this.lblCliente.Size = new System.Drawing.Size(63, 20);
 			this.lblCliente.TabIndex = 11;
 			this.lblCliente.Text = "Cliente";
-			this.lblCliente.Click += new System.EventHandler(this.lblCliente_Click);
 			// 
 			// lblInicio
 			// 
@@ -109,7 +108,6 @@ namespace SistemaBarbearia.Design
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(794, 65);
 			this.label1.TabIndex = 7;
-			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// dgvClientes
 			// 
@@ -117,31 +115,31 @@ namespace SistemaBarbearia.Design
 			this.dgvClientes.AllowUserToDeleteRows = false;
 			this.dgvClientes.AllowUserToResizeColumns = false;
 			this.dgvClientes.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.dgvClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
 			this.dgvClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this.dgvClientes.ColumnHeadersHeight = 30;
 			this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dgvClientes.EnableHeadersVisualStyles = false;
 			this.dgvClientes.Location = new System.Drawing.Point(13, 191);
 			this.dgvClientes.Name = "dgvClientes";
@@ -152,7 +150,6 @@ namespace SistemaBarbearia.Design
 			this.dgvClientes.Size = new System.Drawing.Size(443, 308);
 			this.dgvClientes.TabIndex = 14;
 			this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
-			this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
 			// 
 			// btnCadastro
 			// 
@@ -203,7 +200,6 @@ namespace SistemaBarbearia.Design
 			this.txtBuscaCliente.PlaceholderText = "Nome ou Cpf";
 			this.txtBuscaCliente.Size = new System.Drawing.Size(179, 27);
 			this.txtBuscaCliente.TabIndex = 19;
-			this.txtBuscaCliente.TextChanged += new System.EventHandler(this.txtBuscaCliente_TextChanged);
 			this.txtBuscaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaCliente_KeyPress);
 			// 
 			// txbNome
@@ -215,7 +211,6 @@ namespace SistemaBarbearia.Design
 			this.txbNome.ReadOnly = true;
 			this.txbNome.Size = new System.Drawing.Size(281, 25);
 			this.txbNome.TabIndex = 20;
-			this.txbNome.TextChanged += new System.EventHandler(this.txbNome_TextChanged);
 			// 
 			// txbCpf
 			// 
@@ -270,7 +265,7 @@ namespace SistemaBarbearia.Design
 			this.btnAtualizarCliente.TabIndex = 25;
 			this.btnAtualizarCliente.Text = "Atualizar cliente";
 			this.btnAtualizarCliente.UseVisualStyleBackColor = false;
-			this.btnAtualizarCliente.Click += new System.EventHandler(this.button1_Click);
+			this.btnAtualizarCliente.Click += new System.EventHandler(this.btnAtualizar_Click);
 			// 
 			// btnOk
 			// 

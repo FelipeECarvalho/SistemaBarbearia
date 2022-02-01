@@ -1,22 +1,23 @@
-﻿using SistemaBarbearia.DAL;
-using SistemaBarbearia.Modelo;
-using System;
+﻿using SistemaBarbearia.Modelo;
+using SistemaBarbearia.Repositorio;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaBarbearia.Controle
 {
-	class ServicoControle
+	class ServicoControle : ControleBase
 	{
-		ServicoComandos servicoComandos = new ServicoComandos();
-
+		private readonly RepositorioBase<Servico> _repositorio;
 		public ServicoControle()
 		{
+			_repositorio = new RepositorioBase<Servico>();
 		}
 
-		public List<Servico> GetServicos()
+		public IEnumerable<Servico> Get()
 		{
-			return servicoComandos.GetAllServicos();
+			using (var conexao = new Conexao())
+			{
+				return _repositorio.Get();
+			}
 		}
 	}
 }

@@ -1,61 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SistemaBarbearia.Exception;
-using SistemaBarbearia.DAL;
+﻿using System.Collections.Generic;
 using SistemaBarbearia.Modelo;
 using System.Data;
+using SistemaBarbearia.Repositorio;
+using System.Linq;
 
 namespace SistemaBarbearia.Controle
 {
-	class ClienteControle
+	class ClienteControle : ControleBase
 	{
-		ClienteComandos clienteComandos = new ClienteComandos();
+		private readonly ClienteRepositorio _clienteRepositorio;
+
+		public void Create(Cliente cliente)
+		{
+			if (!(cliente == null))
+			{
+				using (var conexao = new Conexao())
+				{
+					_clienteRepositorio.Create(cliente);
+				}
+			}
+		}
+		public Cliente Get(string cpf)
+		{
+			using (var conexao = new Conexao())
+			{
+				return _clienteRepositorio.Get(cpf);
+			}
+		}
+
+		public Cliente Get(int id)
+		{
+			using (var conexao = new Conexao())
+			{
+				return _clienteRepositorio.Get(id);
+			}
+		}
+
+		public IEnumerable<Cliente> GetAll()
+		{
+			using (var conexao = new Conexao())
+			{
+				return _clienteRepositorio.Get();
+			}
+		}
+
+		public DataTable GetDataTable()
+		{
+			using (var conexao = new Conexao())
+			{
+				var clientes = _clienteRepositorio.Get().ToList();
+				return _clienteRepositorio.GetDataTable(clientes);
+			}
+		}
+
+		public void Update(Cliente cliente)
+		{
+			using (var conexao = new Conexao())
+			{
+				_clienteRepositorio.Update(cliente);
+			}
+		}
+
+		public void Delete(Cliente cliente) 
+		{
+			using (var conexao = new Conexao())
+			{
+				_clienteRepositorio.Delete(cliente);
+			}
+		}
 
 		public ClienteControle()
 		{
+			_clienteRepositorio = new ClienteRepositorio();
 		}
 
-		public void Cadastrar(string cpf, string nome, string telefone, string email)
-		{
-			if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(telefone))
-			{
-				throw new BdCadastroException("Erro ao cadastrar, verifique os valores");
-			}
-			clienteComandos.CadastrarCliente(cpf, nome, telefone, email);
-		}
-
-		public List<Cliente> GetAllClientes()
-		{
-			return clienteComandos.GetAllClientes();
-		}
-
-		public DataTable GetClienteTable()
-		{
-			return clienteComandos.ClienteDataTable();
-		}
-
-		public void ExcluirCliente(string cpf)
-		{
-			clienteComandos.ExcluirCliente(cpf);
-		}
-
-		public Cliente GetCliente(string cpf)
-		{
-			return clienteComandos.GetCliente(cpf);
-		}
-
-		public bool UpdateCliente(string cpf, string nome, string telefone, string email)
-		{
-			if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(telefone))
-			{
-				return false;
-			}
-			else
-			{
-				clienteComandos.UpdateCliente(cpf, nome, telefone, email);
-				return true;
-			}
-		}
 	}
 }
