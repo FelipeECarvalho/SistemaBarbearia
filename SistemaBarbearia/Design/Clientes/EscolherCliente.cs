@@ -13,7 +13,7 @@ namespace SistemaBarbearia.Design
 	public partial class frmEscolherCliente : Form
 	{
 		private	ClienteControle _clienteControle;
-		public string RetornarCpfCliente { get; set; }
+		public int RetornarIdCliente { get; set; }
 
 
 		public frmEscolherCliente()
@@ -50,7 +50,7 @@ namespace SistemaBarbearia.Design
 			if (e.RowIndex >= 0)
 			{
 				DataGridViewRow dataGrid = dgvClientes.Rows[e.RowIndex];
-				RetornarCpfCliente = dataGrid.Cells["CPF"].Value.ToString();
+				RetornarIdCliente = (int)dataGrid.Cells["Id"].Value;
 			}
 			this.DialogResult = DialogResult.OK;
 			this.Close();

@@ -28,6 +28,14 @@ namespace SistemaBarbearia.Controle
 			}
 		}
 
+		public Cliente Get(int id)
+		{
+			using (var conexao = new Conexao())
+			{
+				return _clienteRepositorio.Get(id);
+			}
+		}
+
 		public IEnumerable<Cliente> GetAll()
 		{
 			using (var conexao = new Conexao())

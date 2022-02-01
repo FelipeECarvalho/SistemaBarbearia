@@ -35,7 +35,7 @@ namespace SistemaBarbearia.Design
 
 		private void frmMenu_Load(object sender, EventArgs e)
 		{
-			dgvAgendamentos.DataSource = _agendamentoControle.GetTable(DateTime.Now.ToString());
+			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable(DateTime.Now.ToString());
 		}
 
 		private void lblAgendamentos_Click(object sender, EventArgs e)

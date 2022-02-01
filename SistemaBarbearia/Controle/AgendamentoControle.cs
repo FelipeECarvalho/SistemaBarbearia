@@ -32,7 +32,7 @@ namespace SistemaBarbearia.Controle
 			}
 		}
 
-		public DataTable GetTable(string data = null)
+		public DataTable GetDataTable(string data = null)
 		{
 			IEnumerable<Agendamento> agendamentos;
 			using (var conexao = new Conexao())
@@ -55,6 +55,12 @@ namespace SistemaBarbearia.Controle
 			{
 				return  _agendamentoRepositorio.Get(data);
 			}
+		}
+
+		public void Delete(DateTime data) 
+		{
+			var agendamento = Get(data);
+			_agendamentoRepositorio.Delete(agendamento);
 		}
 	}
 }
