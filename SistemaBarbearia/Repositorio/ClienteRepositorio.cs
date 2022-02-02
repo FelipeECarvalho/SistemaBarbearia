@@ -1,14 +1,11 @@
 ﻿using Dapper;
 using SistemaBarbearia.Modelo;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaBarbearia.Repositorio
 {
 	class ClienteRepositorio : RepositorioBase<Cliente>
 	{
-		public Cliente Get(string cpf) 
+		public Cliente Get(string cpf)
 		{
 			var query = "SELECT * FROM [Cliente] WHERE [Cpf] = @Cpf";
 

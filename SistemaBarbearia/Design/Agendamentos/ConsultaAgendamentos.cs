@@ -1,17 +1,12 @@
 ﻿using SistemaBarbearia.Controle;
-using SistemaBarbearia.Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
 {
 	public partial class frmAgendamentos : Form
 	{
+		private int _linhaAtual = -1;
 		private AgendamentoControle _agendamentoControle;
 		private ClienteControle _clienteControle;
 
@@ -46,18 +41,18 @@ namespace SistemaBarbearia.Design
 			if (e.RowIndex >= 0)
 			{
 				lboServicosEscolhidos.Items.Clear();
+				_linhaAtual = dgvAgendamentos.CurrentRow.Index;
 
-				var dgv = dgvAgendamentos.Rows[e.RowIndex];
-				txbData.Text = dgv.Cells["DATA"].Value.ToString();
+				var agendamento = _agendamentoControle.Get((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
 
-				var agendamento = _agendamentoControle.Get(DateTime.Parse(txbData.Text));
+				txbData.Text = $"{agendamento.Data.Date} {agendamento.Data.Hour} horas";
+
 				var cliente = _clienteControle.Get(agendamento.IdCliente);
 
 				txbClienteNome.Text = cliente.Nome;
 				txbClienteTelefone.Text = cliente.Telefone;
 
 				txbValor.Text = agendamento.ValorTotal.ToString("F2");
-
 
 				foreach (var servico in agendamento.Servicos)
 				{
@@ -73,7 +68,7 @@ namespace SistemaBarbearia.Design
 			{
 				var dataView = _agendamentoControle.GetDataTable().DefaultView;
 
-				dataView.RowFilter = string.Format("NOME LIKE '%@Nome%'", new { @Nome = txbNome.Text});
+				dataView.RowFilter = string.Format("NOME LIKE '%@Nome%'", new { @Nome = txbNome.Text });
 
 				dgvAgendamentos.DataSource = dataView.Table;
 			}
@@ -85,9 +80,10 @@ namespace SistemaBarbearia.Design
 			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable();
 		}
 
+
 		private void btnExcluirAgendamento_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrEmpty(txbData.Text))
+			if (_linhaAtual == -1)
 			{
 				MessageBox.Show("Erro ao excluir, selecione um agendamento", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
@@ -95,7 +91,7 @@ namespace SistemaBarbearia.Design
 			{
 				if (MessageBox.Show("Tem certeza que deseja excluir o agendamento?", "Exclusao", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-					_agendamentoControle.Delete(DateTime.Parse(txbData.Text));
+					_agendamentoControle.Delete((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
 
 					txbClienteNome.Text = "";
 					txbClienteTelefone.Text = "";

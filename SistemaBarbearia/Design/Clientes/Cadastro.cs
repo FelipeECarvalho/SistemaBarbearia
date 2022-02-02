@@ -1,12 +1,7 @@
-﻿using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Controle;
+using SistemaBarbearia.Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using SistemaBarbearia.Controle;
 
 namespace SistemaBarbearia.Design
 {
@@ -27,7 +22,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnCadastro_Click(object sender, EventArgs e)
 		{
-			var cliente = new Cliente(txbCPF.Text.Trim(), txbNome.Text.ToLower().Trim(), txbTelefone.Text, txbEmail.Text.Trim());
+			var cliente = new Cliente() { Cpf = txbCPF.Text.Trim(), Nome = txbNome.Text.ToLower().Trim(), Telefone = txbTelefone.Text, Email = txbEmail.Text.Trim(), Id = 0 };
 
 			_clienteControle.Create(cliente);
 

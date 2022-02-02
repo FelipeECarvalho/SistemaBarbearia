@@ -16,11 +16,11 @@ namespace SistemaBarbearia.Controle
 			_agendamentoRepositorio = new AgendamentoRepositorio();
 		}
 
-		public void Create(Agendamento agendamento)
+		public void Create(Agendamento agendamento, List<Servico> servicos)
 		{
 			using (var conexao = new Conexao())
 			{
-				_agendamentoRepositorio.Create(agendamento);
+				_agendamentoRepositorio.Create(agendamento, servicos);
 			}
 		}
 
@@ -32,34 +32,31 @@ namespace SistemaBarbearia.Controle
 			}
 		}
 
-		public DataTable GetDataTable(string data = null)
+		public DataTable GetDataTable(DateTime? data = null)
 		{
 			IEnumerable<Agendamento> agendamentos;
+
 			using (var conexao = new Conexao())
 			{
-				if (data == null)
-				{
+				if (!data.HasValue)
 					agendamentos = _agendamentoRepositorio.Get();
-				}
-				else 
-				{
-					agendamentos = _agendamentoRepositorio.GetAll(DateTime.Parse(data));
-				}
+				else
+					agendamentos = _agendamentoRepositorio.GetAll(data.Value);
+
 				return _agendamentoRepositorio.GetDataTable(agendamentos.ToList());
 			}
 		}
 
-		public Agendamento Get(DateTime data)
+		public Agendamento Get(int id)
 		{
 			using (var conexao = new Conexao())
 			{
-				return  _agendamentoRepositorio.Get(data);
+				return _agendamentoRepositorio.GetWithServicos(id);
 			}
 		}
-
-		public void Delete(DateTime data) 
+		public void Delete(int id)
 		{
-			var agendamento = Get(data);
+			var agendamento = Get(id);
 			_agendamentoRepositorio.Delete(agendamento);
 		}
 	}

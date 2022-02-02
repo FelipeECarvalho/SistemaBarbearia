@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using SistemaBarbearia.Modelo;
-using System.Data;
+﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
+using System.Data;
 using System.Linq;
 
 namespace SistemaBarbearia.Controle
@@ -12,7 +11,7 @@ namespace SistemaBarbearia.Controle
 
 		public void Create(Cliente cliente)
 		{
-			if (!(cliente == null))
+			if (!(string.IsNullOrEmpty(cliente.Nome)))
 			{
 				using (var conexao = new Conexao())
 				{
@@ -20,6 +19,7 @@ namespace SistemaBarbearia.Controle
 				}
 			}
 		}
+
 		public Cliente Get(string cpf)
 		{
 			using (var conexao = new Conexao())
@@ -36,20 +36,11 @@ namespace SistemaBarbearia.Controle
 			}
 		}
 
-		public IEnumerable<Cliente> GetAll()
-		{
-			using (var conexao = new Conexao())
-			{
-				return _clienteRepositorio.Get();
-			}
-		}
-
 		public DataTable GetDataTable()
 		{
 			using (var conexao = new Conexao())
 			{
-				var clientes = _clienteRepositorio.Get().ToList();
-				return _clienteRepositorio.GetDataTable(clientes);
+				return _clienteRepositorio.GetDataTable(_clienteRepositorio.Get().ToList());
 			}
 		}
 
@@ -61,7 +52,7 @@ namespace SistemaBarbearia.Controle
 			}
 		}
 
-		public void Delete(Cliente cliente) 
+		public void Delete(Cliente cliente)
 		{
 			using (var conexao = new Conexao())
 			{

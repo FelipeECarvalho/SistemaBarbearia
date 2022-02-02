@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
+﻿using SistemaBarbearia.Controle;
 using SistemaBarbearia.Modelo;
+using System;
 using System.Windows.Forms;
-using System.Globalization;
-using SistemaBarbearia.Controle;
-using SistemaBarbearia.Repositorio;
 
 namespace SistemaBarbearia.Design
 {
@@ -24,7 +16,7 @@ namespace SistemaBarbearia.Design
 
 		public frmAgendar()
 		{
-			
+
 			_agendamentoControle = new AgendamentoControle();
 			_servicoControle = new ServicoControle();
 			_clienteControle = new ClienteControle();
@@ -68,16 +60,14 @@ namespace SistemaBarbearia.Design
 
 		private void btnAgendar_Click(object sender, EventArgs e)
 		{
-			if (_agendamento.Data == null || _agendamento.IdCliente == 0 || _agendamento.ValorTotal == 0)
+			if ((_agendamento.Data == DateTime.MinValue || _agendamento.Data.Hour == 0) || _agendamento.IdCliente == 0 || _agendamento.ValorTotal == 0)
 			{
 				MessageBox.Show("Não foi possivel agendar, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
-			_agendamentoControle.Create(_agendamento);
+			_agendamentoControle.Create(_agendamento, _agendamento.Servicos);
 
 			MessageBox.Show("Agendamento cadastrado com sucesso!", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-			this.Close();
 		}
 
 		private void pictureBox2_Click(object sender, EventArgs e)
@@ -131,14 +121,14 @@ namespace SistemaBarbearia.Design
 
 			if (horario.DialogResult == DialogResult.OK)
 			{
-				var data = DateTime.ParseExact(dtpData.Value.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
 				var horarioEscolhido = horario.RetornoHorario;
 
-				_agendamento.Data = new DateTime(data.Year, data.Month, data.Day, horarioEscolhido, 00, 00);
+				_agendamento.Data = new DateTime(dtpData.Value.Year, dtpData.Value.Month, dtpData.Value.Day, horarioEscolhido, 00, 00);
 
-				lblData.Text = _agendamento.Data.ToString("dd/MM/yyyy");
-				lblHorario.Text = _agendamento.Data.Hour.ToString();
+				lblData.Text = "Data: ";
+				lblHorario.Text = "Horário: ";
+				lblData.Text += _agendamento.Data.ToString("dd/MM/yyyy");
+				lblHorario.Text += _agendamento.Data.Hour.ToString() + " horas";
 			}
 		}
 	}

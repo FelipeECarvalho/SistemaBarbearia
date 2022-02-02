@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Text;
 
 namespace SistemaBarbearia.Repositorio
 {
@@ -14,28 +13,28 @@ namespace SistemaBarbearia.Repositorio
 			return Database.Connection.GetAll<T>();
 		}
 
-		public T Get(int id) 
+		public T Get(int id)
 		{
 			return Database.Connection.Get<T>(id);
 		}
 
-		public virtual void Create(T model) 
+		public void Create(T model)
 		{
 			Database.Connection.Insert<T>(model);
 		}
 
-		public void Update(T model) 
+		public void Update(T model)
 		{
 			Database.Connection.Update<T>(model);
 		}
 
-		public void Delete(int id) 
+		public void Delete(int id)
 		{
 			var model = Get(id);
 			Database.Connection.Delete<T>(model);
 		}
 
-		public void Delete(T model) 
+		public void Delete(T model)
 		{
 			Database.Connection.Delete<T>(model);
 		}
@@ -48,7 +47,7 @@ namespace SistemaBarbearia.Repositorio
 
 			//Mapeamento das propriedades da classe para a tabela.
 
-			for (int i = 0; i < propriedades.Count; i++) 
+			for (int i = 0; i < propriedades.Count; i++)
 			{
 				PropertyDescriptor propriedade = propriedades[i];
 
@@ -57,7 +56,7 @@ namespace SistemaBarbearia.Repositorio
 				{
 					tabela.Columns.Add(propriedade.Name, propriedade.PropertyType.GetGenericArguments()[0]);
 				}
-				else 
+				else
 				{
 					tabela.Columns.Add(propriedade.Name, propriedade.PropertyType);
 				}
@@ -70,7 +69,7 @@ namespace SistemaBarbearia.Repositorio
 
 			foreach (var item in lista)
 			{
-				for (int i = 0; i < valores.Length; i++) 
+				for (int i = 0; i < valores.Length; i++)
 				{
 					valores[i] = propriedades[i].GetValue(item);
 				}

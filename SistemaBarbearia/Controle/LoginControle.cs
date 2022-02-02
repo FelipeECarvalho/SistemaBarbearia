@@ -1,8 +1,5 @@
-﻿using SistemaBarbearia.Exception;
-using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
-using System;
-using System.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {

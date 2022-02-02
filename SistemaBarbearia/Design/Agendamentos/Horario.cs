@@ -1,13 +1,7 @@
 ﻿using SistemaBarbearia.Controle;
-using SistemaBarbearia.Modelo;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -45,10 +39,10 @@ namespace SistemaBarbearia.Design
 				btn9
 			};
 
-			foreach (var button in buttons) 
+			foreach (var button in buttons)
 			{
 				var horaMin = int.Parse(button.Text.Substring(0, 2));
-				
+
 				foreach (var horario in horariosOcupados)
 				{
 					if (horaMin == horario.Hour)

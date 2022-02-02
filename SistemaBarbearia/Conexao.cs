@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SistemaBarbearia
 {
 	class Conexao : IDisposable
 	{
-		public Conexao() 
+		public Conexao()
 		{
-			Database.Connection.ConnectionString = "Server=localhost,1433;Database=Barbearia;User Id=sa;Password=1q2w3e4r@#$;Trusted_Connection=False; TrustServerCertificate=True;";
+			Database.Connection = new SqlConnection("Server=localhost,1433;Database=Barbearia;User Id=sa;Password=1q2w3e4r@#$;Trusted_Connection=False; TrustServerCertificate=True;");
 
 			Database.Connection.Open();
 		}

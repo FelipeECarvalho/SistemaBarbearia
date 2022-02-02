@@ -6,17 +6,25 @@ namespace SistemaBarbearia.Controle
 {
 	class ServicoControle : ControleBase
 	{
-		private readonly RepositorioBase<Servico> _repositorio;
+		private readonly ServicoRepositorio _servicoRepositorio;
 		public ServicoControle()
 		{
-			_repositorio = new RepositorioBase<Servico>();
+			_servicoRepositorio = new ServicoRepositorio();
 		}
 
 		public IEnumerable<Servico> Get()
 		{
 			using (var conexao = new Conexao())
 			{
-				return _repositorio.Get();
+				return _servicoRepositorio.Get();
+			}
+		}
+
+		public IEnumerable<Servico> GetByAgendamento(int idAgendamento)
+		{
+			using (var conexao = new Conexao())
+			{
+				return _servicoRepositorio.GetByAgendamento(idAgendamento);
 			}
 		}
 	}

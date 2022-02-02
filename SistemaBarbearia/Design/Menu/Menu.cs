@@ -1,24 +1,20 @@
-﻿using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Controle;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using SistemaBarbearia.Controle;
 
 namespace SistemaBarbearia.Design
 {
 	public partial class frmMenu : Form
 	{
 		private readonly AgendamentoControle _agendamentoControle;
+		private readonly ClienteControle _clienteControle;
 
 		public frmMenu()
 		{
 			InitializeComponent();
-			lblNome.Text += " " + Program.Adm;
+			lblNome.Text += " " + Program.Adm.Nome;
 			_agendamentoControle = new AgendamentoControle();
+			_clienteControle = new ClienteControle();
 		}
 
 		private void lblAgendar_Click(object sender, EventArgs e)
@@ -35,7 +31,10 @@ namespace SistemaBarbearia.Design
 
 		private void frmMenu_Load(object sender, EventArgs e)
 		{
-			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable(DateTime.Now.ToString());
+			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable(DateTime.Now);
+			dgvAgendamentos.Columns["Id"].Visible = false;
+			dgvAgendamentos.Columns["IdCliente"].Visible = false;
+			dgvAgendamentos.Columns["ValorTotal"].Visible = false;
 		}
 
 		private void lblAgendamentos_Click(object sender, EventArgs e)

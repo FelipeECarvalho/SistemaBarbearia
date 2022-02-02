@@ -1,7 +1,4 @@
 ﻿using Dapper.Contrib.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaBarbearia.Modelo
 {
@@ -11,5 +8,10 @@ namespace SistemaBarbearia.Modelo
 		public int Id { get; }
 		public string Descricao { get; }
 		public decimal Valor { get; }
+
+		public override string ToString()
+		{
+			return $"{Descricao} - R${Valor.ToString("F2")}";
+		}
 	}
 }

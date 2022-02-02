@@ -7,7 +7,7 @@
 		public event ControleExceptionEventHandler ControleExceptionRaised;
 
 
-		protected virtual void OnControleExceptionRaised(string mensagem) 
+		protected virtual void OnControleExceptionRaised(string mensagem)
 		{
 			ControleExceptionRaised(mensagem);
 		}

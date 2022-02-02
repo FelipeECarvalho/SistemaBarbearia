@@ -51,6 +51,10 @@ namespace SistemaBarbearia.Design
 			this.btnOk = new System.Windows.Forms.Button();
 			this.btnCancelar = new System.Windows.Forms.Button();
 			this.lblAgendamentos = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
 			this.SuspendLayout();
@@ -205,42 +209,38 @@ namespace SistemaBarbearia.Design
 			// txbNome
 			// 
 			this.txbNome.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txbNome.Location = new System.Drawing.Point(477, 209);
+			this.txbNome.Location = new System.Drawing.Point(530, 209);
 			this.txbNome.Name = "txbNome";
-			this.txbNome.PlaceholderText = "Nome";
 			this.txbNome.ReadOnly = true;
-			this.txbNome.Size = new System.Drawing.Size(281, 25);
+			this.txbNome.Size = new System.Drawing.Size(245, 25);
 			this.txbNome.TabIndex = 20;
 			// 
 			// txbCpf
 			// 
 			this.txbCpf.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txbCpf.Location = new System.Drawing.Point(477, 267);
+			this.txbCpf.Location = new System.Drawing.Point(530, 267);
 			this.txbCpf.Name = "txbCpf";
-			this.txbCpf.PlaceholderText = "Cpf";
 			this.txbCpf.ReadOnly = true;
-			this.txbCpf.Size = new System.Drawing.Size(200, 25);
+			this.txbCpf.Size = new System.Drawing.Size(139, 25);
 			this.txbCpf.TabIndex = 21;
 			// 
 			// txbEmail
 			// 
 			this.txbEmail.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txbEmail.Location = new System.Drawing.Point(477, 320);
+			this.txbEmail.Location = new System.Drawing.Point(530, 320);
 			this.txbEmail.Name = "txbEmail";
-			this.txbEmail.PlaceholderText = "Email";
 			this.txbEmail.ReadOnly = true;
-			this.txbEmail.Size = new System.Drawing.Size(281, 25);
+			this.txbEmail.Size = new System.Drawing.Size(245, 25);
 			this.txbEmail.TabIndex = 22;
 			// 
 			// txbTelefone
 			// 
 			this.txbTelefone.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.txbTelefone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.txbTelefone.Location = new System.Drawing.Point(477, 374);
+			this.txbTelefone.Location = new System.Drawing.Point(530, 382);
 			this.txbTelefone.Name = "txbTelefone";
-			this.txbTelefone.PlaceholderText = "Telefone";
 			this.txbTelefone.ReadOnly = true;
-			this.txbTelefone.Size = new System.Drawing.Size(200, 25);
+			this.txbTelefone.Size = new System.Drawing.Size(139, 25);
 			this.txbTelefone.TabIndex = 23;
 			// 
 			// label3
@@ -309,11 +309,55 @@ namespace SistemaBarbearia.Design
 			this.lblAgendamentos.Text = "Agendamentos";
 			this.lblAgendamentos.Click += new System.EventHandler(this.lblAgendamentos_Click);
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.label4.Location = new System.Drawing.Point(462, 212);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(45, 16);
+			this.label4.TabIndex = 29;
+			this.label4.Text = "Nome";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.label5.Location = new System.Drawing.Point(462, 270);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(30, 16);
+			this.label5.TabIndex = 30;
+			this.label5.Text = "Cpf";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.label6.Location = new System.Drawing.Point(462, 323);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(43, 16);
+			this.label6.TabIndex = 31;
+			this.label6.Text = "Email";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.label7.Location = new System.Drawing.Point(462, 385);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(62, 16);
+			this.label7.TabIndex = 32;
+			this.label7.Text = "Telefone";
+			// 
 			// frmCliente
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(791, 511);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label4);
 			this.Controls.Add(this.lblAgendamentos);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnOk);
@@ -364,5 +408,9 @@ namespace SistemaBarbearia.Design
 		private System.Windows.Forms.Button btnOk;
 		private System.Windows.Forms.Button btnCancelar;
 		private System.Windows.Forms.Label lblAgendamentos;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
 	}
 }
