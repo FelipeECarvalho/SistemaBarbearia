@@ -1,6 +1,7 @@
 ﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SistemaBarbearia.Controle
@@ -11,59 +12,84 @@ namespace SistemaBarbearia.Controle
 
 		public void Create(Cliente cliente)
 		{
-			if (!(string.IsNullOrEmpty(cliente.Nome)))
+			try
 			{
 				using (var conexao = new Conexao())
 				{
 					_clienteRepositorio.Create(cliente);
 				}
+				
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel cadastrar o cliente. Verifique a conexão. {e.Source}"); }
 		}
 
 		public Cliente Get(string cpf)
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				return _clienteRepositorio.Get(cpf);
+				using (var conexao = new Conexao())
+				{
+					return _clienteRepositorio.Get(cpf);
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar o cliente. Verifique a conexão. {e.Source}"); }
+
+			return null;
 		}
 
 		public Cliente Get(int id)
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				return _clienteRepositorio.Get(id);
+				using (var conexao = new Conexao())
+				{
+					return _clienteRepositorio.Get(id);
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar o cliente. Verifique a conexão. {e.Source}"); }
+
+			return null;
 		}
 
 		public DataTable GetDataTable()
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				return _clienteRepositorio.GetDataTable(_clienteRepositorio.Get().ToList());
+				using (var conexao = new Conexao())
+				{
+					return _clienteRepositorio.GetDataTable(_clienteRepositorio.Get().ToList());
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os dados da tabela. Verifique a conexão. {e.Source}"); }
+
+			return null;
 		}
 
 		public void Update(Cliente cliente)
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				_clienteRepositorio.Update(cliente);
+				using (var conexao = new Conexao())
+				{
+					_clienteRepositorio.Update(cliente);
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel atualizar o cliente. Verifique a conexão. {e.Source}"); }
 		}
 
 		public void Delete(Cliente cliente)
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				_clienteRepositorio.Delete(cliente);
+				using (var conexao = new Conexao())
+				{
+					_clienteRepositorio.Delete(cliente);
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel deletar o cliente. Verifique a conexão. {e.Source}"); }
 		}
 
-		public ClienteControle()
-		{
-			_clienteRepositorio = new ClienteRepositorio();
-		}
+		public ClienteControle() => _clienteRepositorio = new ClienteRepositorio();
 
 	}
 }

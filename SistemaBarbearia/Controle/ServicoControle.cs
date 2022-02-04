@@ -1,6 +1,7 @@
 ﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {
@@ -14,18 +15,30 @@ namespace SistemaBarbearia.Controle
 
 		public IEnumerable<Servico> Get()
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				return _servicoRepositorio.Get();
+				using (var conexao = new Conexao())
+				{
+					return _servicoRepositorio.Get();
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os serviços. Verifique a conexão. {e.Source}"); }
+
+			return null;
 		}
 
 		public IEnumerable<Servico> GetByAgendamento(int idAgendamento)
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				return _servicoRepositorio.GetByAgendamento(idAgendamento);
+				using (var conexao = new Conexao())
+				{
+					return _servicoRepositorio.GetByAgendamento(idAgendamento);
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os serviços do agendamento. Verifique a conexão. {e.Source}"); }
+
+			return null;
 		}
 	}
 }

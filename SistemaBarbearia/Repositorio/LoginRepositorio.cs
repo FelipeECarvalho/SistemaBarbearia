@@ -10,7 +10,7 @@ namespace SistemaBarbearia.Repositorio
 			var query = "SELECT * FROM [Administrador] WHERE [Usuario] = @Usuario AND [Senha] = @Senha";
 			var param = new { @Usuario = usuario, @Senha = senha };
 
-			return Database.Connection.QueryFirst<Administrador>(query, param);
+			return Database.Connection.QueryFirstOrDefault<Administrador>(query, param);
 		}
 	}
 }

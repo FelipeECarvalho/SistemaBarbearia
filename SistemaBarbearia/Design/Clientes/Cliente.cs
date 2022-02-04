@@ -56,28 +56,28 @@ namespace SistemaBarbearia.Design
 
 			if (string.IsNullOrEmpty(txbCpf.Text))
 			{
-				//MessageBox.Show("Erro ao excluir, selecione um cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				Console.WriteLine("ERRO");
+				MessageBox.Show("Erro ao excluir, selecione um cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
 			}
-			else
+
+			if (MessageBox.Show("Tem certeza que deseja excluir o cliente?", "Exclusao", MessageBoxButtons.YesNo) == DialogResult.No)
 			{
-				if (MessageBox.Show("Tem certeza que deseja excluir o cliente?", "Exclusao", MessageBoxButtons.YesNo) == DialogResult.Yes)
-				{
-					var cliente = _clienteControle.Get(txbCpf.Text);
-					_clienteControle.Delete(cliente);
-
-					txbNome.Text = "";
-					txbCpf.Text = "";
-					txbEmail.Text = "";
-					txbTelefone.Text = "";
-
-					dgvClientes.DataSource = null;
-					dgvClientes.DataSource = _clienteControle.GetDataTable();
-
-					MessageBox.Show("Cliente excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
+				return;
 			}
-		}
+
+			var cliente = _clienteControle.Get(txbCpf.Text);
+			_clienteControle.Delete(cliente);
+
+			txbNome.Text = "";
+			txbCpf.Text = "";
+			txbEmail.Text = "";
+			txbTelefone.Text = "";
+
+			dgvClientes.DataSource = null;
+			dgvClientes.DataSource = _clienteControle.GetDataTable();
+
+			MessageBox.Show("Cliente excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+	}
 
 		private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
@@ -98,7 +98,7 @@ namespace SistemaBarbearia.Design
 			{
 				DataView dv = _clienteControle.GetDataTable().DefaultView;
 
-				dv.RowFilter = string.Format("NOME LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "%'");
+				dv.RowFilter = string.Format("NOME LIKE '%@procura%' OR CPF LIKE '%@procura%'", new { @procura = txtBuscaCliente.Text });
 				dgvClientes.DataSource = dv.Table;
 			}
 		}
@@ -115,21 +115,21 @@ namespace SistemaBarbearia.Design
 			if (cliente == null)
 			{
 				MessageBox.Show("Erro ao atualizar, verifique os dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
 			}
-			else
-			{
-				cliente.SetEmail(txbEmail.Text);
-				cliente.SetNome(txbNome.Text);
-				cliente.SetTelefone(txbTelefone.Text);
 
-				_clienteControle.Update(cliente);
 
-				MessageBox.Show("Cliente atualizado com sucesso!", "Atualizacao", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				ZerarUpdate();
+			cliente.SetEmail(txbEmail.Text);
+			cliente.SetNome(txbNome.Text);
+			cliente.SetTelefone(txbTelefone.Text);
 
-				dgvClientes.DataSource = null;
-				dgvClientes.DataSource = _clienteControle.GetDataTable();
-			}
+			_clienteControle.Update(cliente);
+
+			MessageBox.Show("Cliente atualizado com sucesso!", "Atualizacao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ZerarUpdate();
+
+			dgvClientes.DataSource = null;
+			dgvClientes.DataSource = _clienteControle.GetDataTable();
 		}
 
 		private void ZerarUpdate()

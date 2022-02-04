@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
 {
 	public partial class frmHorario : Form
 	{
-		AgendamentoControle _agendamentoControle;
+		private AgendamentoControle _agendamentoControle;
 		public int RetornoHorario { get; set; }
 
 		private DateTime _dataEscolhida;
@@ -24,7 +25,9 @@ namespace SistemaBarbearia.Design
 
 		private void frmHorario_Load(object sender, EventArgs e)
 		{
-			var horariosOcupados = _agendamentoControle.GetDatas(_dataEscolhida);
+			var horariosOcupados = _agendamentoControle.GetDatas(_dataEscolhida).ToList();
+
+			var horaAtual = DateTime.Now.Hour;
 
 			var buttons = new List<Button>
 			{
@@ -45,7 +48,7 @@ namespace SistemaBarbearia.Design
 
 				foreach (var horario in horariosOcupados)
 				{
-					if (horaMin == horario.Hour)
+					if (horaMin == horario.Hour || horaMin <= horaAtual)
 					{
 						button.BackColor = Color.Silver;
 						button.Enabled = false;

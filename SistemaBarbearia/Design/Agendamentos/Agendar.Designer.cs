@@ -150,6 +150,7 @@ namespace SistemaBarbearia.Design
 			this.dtpData.Name = "dtpData";
 			this.dtpData.Size = new System.Drawing.Size(107, 23);
 			this.dtpData.TabIndex = 26;
+			this.dtpData.ValueChanged += new System.EventHandler(this.dtpData_ValueChanged);
 			// 
 			// label1
 			// 

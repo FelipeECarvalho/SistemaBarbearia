@@ -1,5 +1,6 @@
 ﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
+using System.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {
@@ -7,17 +8,20 @@ namespace SistemaBarbearia.Controle
 	{
 		private readonly LoginRepositorio _loginRepositorio;
 
-		public LoginControle()
-		{
-			_loginRepositorio = new LoginRepositorio();
-		}
+		public LoginControle() => _loginRepositorio = new LoginRepositorio();
 
 		public Administrador Login(string login, string senha)
 		{
-			using (var conexao = new Conexao())
+			try
 			{
-				return _loginRepositorio.Acessar(login, senha);
+				using (var conexao = new Conexao())
+				{
+					return _loginRepositorio.Acessar(login, senha);
+				}
 			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar. Verifique a conexão. \n {e.Source}"); }
+
+			return null;
 		}
 	}
 }

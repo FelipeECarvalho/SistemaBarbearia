@@ -29,7 +29,7 @@ namespace SistemaBarbearia.Design
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblAgendamentos = new System.Windows.Forms.Label();
 			this.lblCliente = new System.Windows.Forms.Label();
 			this.lblInicio = new System.Windows.Forms.Label();
@@ -132,14 +132,14 @@ namespace SistemaBarbearia.Design
 			this.dgvAgendamentos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.dgvAgendamentos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
 			this.dgvAgendamentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvAgendamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvAgendamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvAgendamentos.ColumnHeadersHeight = 30;
 			this.dgvAgendamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgvAgendamentos.EnableHeadersVisualStyles = false;
@@ -151,7 +151,7 @@ namespace SistemaBarbearia.Design
 			this.dgvAgendamentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvAgendamentos.Size = new System.Drawing.Size(243, 325);
 			this.dgvAgendamentos.TabIndex = 14;
-			this.dgvAgendamentos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgendamentos_CellContentDoubleClick);
+			this.dgvAgendamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgendamentos_CellContentClick);
 			// 
 			// label3
 			// 

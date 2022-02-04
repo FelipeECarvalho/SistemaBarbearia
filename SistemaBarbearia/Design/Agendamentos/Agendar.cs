@@ -63,6 +63,7 @@ namespace SistemaBarbearia.Design
 			if ((_agendamento.Data == DateTime.MinValue || _agendamento.Data.Hour == 0) || _agendamento.IdCliente == 0 || _agendamento.ValorTotal == 0)
 			{
 				MessageBox.Show("Não foi possivel agendar, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
 			}
 
 			_agendamentoControle.Create(_agendamento, _agendamento.Servicos);
@@ -88,6 +89,12 @@ namespace SistemaBarbearia.Design
 
 		private void btnGuardarServicos_Click(object sender, EventArgs e)
 		{
+			if (cklServicos.CheckedItems.Count == 0)
+			{
+				MessageBox.Show("Nenhum servico escolhido, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
 			_agendamento.Servicos.Clear();
 			lboServicosEscolhidos.Items.Clear();
 			_agendamento.ValorTotal = 0;
@@ -96,28 +103,27 @@ namespace SistemaBarbearia.Design
 			foreach (Servico servico in cklServicos.CheckedItems)
 			{
 				_agendamento.ValorTotal += servico.Valor;
-
 				lboServicosEscolhidos.Items.Add(servico);
-
 				_agendamento.Servicos.Add(servico);
-
 			}
 
 			lblTotal.Text = "Total R$" + _agendamento.ValorTotal.ToString("F2");
-
 			cklServicos.Items.Clear();
-
 			PovoarLista();
 		}
 
 		private void btnHorario_Click(object sender, EventArgs e)
 		{
 
-			if (dtpData.Value == null)
-				Console.WriteLine("ERRO!");
+			if (dtpData.Value.Date <  DateTime.Now.Date || dtpData.Value == DateTime.MinValue)
+			{
+				MessageBox.Show("Data inválida, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 
 			var horario = new frmHorario(dtpData.Value);
 			horario.ShowDialog();
+
 
 			if (horario.DialogResult == DialogResult.OK)
 			{
@@ -125,11 +131,16 @@ namespace SistemaBarbearia.Design
 
 				_agendamento.Data = new DateTime(dtpData.Value.Year, dtpData.Value.Month, dtpData.Value.Day, horarioEscolhido, 00, 00);
 
-				lblData.Text = "Data: ";
-				lblHorario.Text = "Horário: ";
-				lblData.Text += _agendamento.Data.ToString("dd/MM/yyyy");
-				lblHorario.Text += _agendamento.Data.Hour.ToString() + " horas";
+				lblHorario.Text = $"Horário: {_agendamento.Data.Hour.ToString()} horas";
 			}
+		}
+
+		private void dtpData_ValueChanged(object sender, EventArgs e)
+		{
+			_agendamento.Data = dtpData.Value.Date;
+			lblHorario.Text = "Horário: ";
+			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
+			
 		}
 	}
 }
