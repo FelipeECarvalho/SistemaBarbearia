@@ -52,6 +52,9 @@ namespace SistemaBarbearia.Design
 		private void frmAgendamentos_Load(object sender, EventArgs e)
 		{
 			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable();
+			dgvAgendamentos.Columns["Id"].Visible = false;
+			dgvAgendamentos.Columns["IdCliente"].Visible = false;
+			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
 		}
 
 
@@ -92,7 +95,7 @@ namespace SistemaBarbearia.Design
 
 				var agendamento = _agendamentoControle.Get((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
 
-				txbData.Text = $"{agendamento.Data.Date} {agendamento.Data.Hour} horas";
+				txbData.Text = $"{agendamento.Data}";
 
 				var cliente = _clienteControle.Get(agendamento.IdCliente);
 

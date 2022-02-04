@@ -18,7 +18,7 @@ namespace SistemaBarbearia.Controle
 				{
 					_clienteRepositorio.Create(cliente);
 				}
-				
+
 			}
 			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel cadastrar o cliente. Verifique a conexão. {e.Source}"); }
 		}

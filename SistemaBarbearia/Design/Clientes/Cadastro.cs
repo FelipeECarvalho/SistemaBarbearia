@@ -22,7 +22,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnCadastro_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrEmpty(txbCPF.Text.Trim()) || string.IsNullOrEmpty(txbNome.Text.Trim()) || string.IsNullOrEmpty(txbTelefone.Text.Trim()) || string.IsNullOrEmpty(txbEmail.Text.Trim())) 
+			if (string.IsNullOrEmpty(txbCPF.Text.Trim()) || string.IsNullOrEmpty(txbNome.Text.Trim()) || string.IsNullOrEmpty(txbTelefone.Text.Trim()) || string.IsNullOrEmpty(txbEmail.Text.Trim()))
 			{
 				MessageBox.Show("Erro ao cadastrar cliente. Verifique os dados", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;

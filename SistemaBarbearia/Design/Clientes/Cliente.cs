@@ -77,7 +77,7 @@ namespace SistemaBarbearia.Design
 			dgvClientes.DataSource = _clienteControle.GetDataTable();
 
 			MessageBox.Show("Cliente excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-	}
+		}
 
 		private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
 		{

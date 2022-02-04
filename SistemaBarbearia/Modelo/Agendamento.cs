@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using SistemaBarbearia.Controle;
 using System;
 using System.Collections.Generic;
 
@@ -14,10 +15,25 @@ namespace SistemaBarbearia.Modelo
 
 		[Write(false)]
 		public List<Servico> Servicos { get; set; }
+		[Write(false)]
+		public string NomeCliente
+		{
+			get
+			{
+				return _clienteControle.Get(IdCliente).Nome;
+			}
+			set
+			{
+				NomeCliente = value;
+			}
+		}
+
+		private ClienteControle _clienteControle;
 
 		public Agendamento()
 		{
 			Servicos = new List<Servico>();
+			_clienteControle = new ClienteControle();
 		}
 	}
 }

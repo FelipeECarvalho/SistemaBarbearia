@@ -35,6 +35,7 @@ namespace SistemaBarbearia.Design
 			dgvAgendamentos.Columns["Id"].Visible = false;
 			dgvAgendamentos.Columns["IdCliente"].Visible = false;
 			dgvAgendamentos.Columns["ValorTotal"].Visible = false;
+			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
 		}
 
 		private void lblAgendamentos_Click(object sender, EventArgs e)

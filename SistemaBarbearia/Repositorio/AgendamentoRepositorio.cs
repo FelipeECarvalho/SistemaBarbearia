@@ -57,7 +57,6 @@ namespace SistemaBarbearia.Repositorio
 			(agenda, servico) =>
 			{
 				var age = agendamentos.FirstOrDefault(x => x.Id == agenda.Id);
-
 				if (age == null)
 				{
 					age = agenda;
@@ -81,7 +80,7 @@ namespace SistemaBarbearia.Repositorio
 
 			agendamento = Get(id);
 
-			agendamento.Servicos.AddRange(servicoControle?.GetByAgendamento(id));
+			agendamento.Servicos.AddRange(servicoControle.GetByAgendamento(id).ToList());
 
 			return agendamento;
 		}

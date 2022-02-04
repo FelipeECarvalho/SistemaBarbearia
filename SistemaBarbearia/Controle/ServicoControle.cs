@@ -40,5 +40,18 @@ namespace SistemaBarbearia.Controle
 
 			return null;
 		}
+
+		public void Create(Servico servico)
+		{
+			try
+			{
+				using (var conexao = new Conexao())
+				{
+
+					_servicoRepositorio.Create(servico);
+				}
+			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os serviços do agendamento. Verifique a conexão. {e.Source}"); }
+		}
 	}
 }

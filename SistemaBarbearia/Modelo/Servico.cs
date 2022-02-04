@@ -5,9 +5,9 @@ namespace SistemaBarbearia.Modelo
 	[Table("Servico")]
 	class Servico
 	{
-		public int Id { get; }
-		public string Descricao { get; }
-		public decimal Valor { get; }
+		public int Id { get; set; }
+		public string Descricao { get; set; }
+		public decimal Valor { get; set; }
 
 		public override string ToString()
 		{

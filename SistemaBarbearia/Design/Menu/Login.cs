@@ -20,7 +20,7 @@ namespace SistemaBarbearia
 
 			var adm = _loginControle.Login(txbUsuario.Text.ToLower(), txbSenha.Text);
 
-			if (adm == null) 
+			if (adm == null)
 			{
 				MessageBox.Show($"USUÁRIO OU SENHA INVÁLIDOS", "ControleException", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;

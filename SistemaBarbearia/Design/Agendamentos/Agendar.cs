@@ -1,4 +1,5 @@
 ﻿using SistemaBarbearia.Controle;
+using SistemaBarbearia.Design.Agendamentos;
 using SistemaBarbearia.Modelo;
 using System;
 using System.Windows.Forms;
@@ -69,6 +70,7 @@ namespace SistemaBarbearia.Design
 			_agendamentoControle.Create(_agendamento, _agendamento.Servicos);
 
 			MessageBox.Show("Agendamento cadastrado com sucesso!", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ZerarResumo();
 		}
 
 		private void pictureBox2_Click(object sender, EventArgs e)
@@ -115,7 +117,7 @@ namespace SistemaBarbearia.Design
 		private void btnHorario_Click(object sender, EventArgs e)
 		{
 
-			if (dtpData.Value.Date <  DateTime.Now.Date || dtpData.Value == DateTime.MinValue)
+			if (dtpData.Value.Date < DateTime.Now.Date || dtpData.Value == DateTime.MinValue)
 			{
 				MessageBox.Show("Data inválida, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -140,7 +142,24 @@ namespace SistemaBarbearia.Design
 			_agendamento.Data = dtpData.Value.Date;
 			lblHorario.Text = "Horário: ";
 			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
-			
+
+		}
+
+		private void ZerarResumo()
+		{
+			lblTotal.Text = "Total R$";
+			lblHorario.Text = "Horário: ";
+			lblData.Text = "Data: ";
+			lboServicosEscolhidos.Items.Clear();
+			_agendamento = new Agendamento();
+		}
+
+		private void lblCadServico_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			new frmServico().Show();
+			cklServicos.Items.Clear();
+			PovoarLista();
+
 		}
 	}
 }

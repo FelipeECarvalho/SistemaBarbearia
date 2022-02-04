@@ -54,6 +54,7 @@ namespace SistemaBarbearia.Design
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
+			this.lblCadServico = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
@@ -166,7 +167,7 @@ namespace SistemaBarbearia.Design
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.label5.Location = new System.Drawing.Point(125, 330);
+			this.label5.Location = new System.Drawing.Point(121, 329);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(129, 16);
 			this.label5.TabIndex = 28;
@@ -222,7 +223,7 @@ namespace SistemaBarbearia.Design
 			this.btnGuardarServicos.BackColor = System.Drawing.Color.LightSkyBlue;
 			this.btnGuardarServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnGuardarServicos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.btnGuardarServicos.Location = new System.Drawing.Point(271, 455);
+			this.btnGuardarServicos.Location = new System.Drawing.Point(271, 427);
 			this.btnGuardarServicos.Name = "btnGuardarServicos";
 			this.btnGuardarServicos.Size = new System.Drawing.Size(87, 27);
 			this.btnGuardarServicos.TabIndex = 31;
@@ -326,11 +327,24 @@ namespace SistemaBarbearia.Design
 			this.label9.TabIndex = 46;
 			this.label9.Text = "Resumo";
 			// 
+			// lblCadServico
+			// 
+			this.lblCadServico.AutoSize = true;
+			this.lblCadServico.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.lblCadServico.Location = new System.Drawing.Point(271, 466);
+			this.lblCadServico.Name = "lblCadServico";
+			this.lblCadServico.Size = new System.Drawing.Size(115, 16);
+			this.lblCadServico.TabIndex = 47;
+			this.lblCadServico.TabStop = true;
+			this.lblCadServico.Text = "Cadastrar servico";
+			this.lblCadServico.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCadServico_LinkClicked);
+			// 
 			// frmAgendar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(791, 511);
+			this.Controls.Add(this.lblCadServico);
 			this.Controls.Add(this.label9);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label7);
@@ -392,5 +406,6 @@ namespace SistemaBarbearia.Design
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.LinkLabel lblCadServico;
 	}
 }
