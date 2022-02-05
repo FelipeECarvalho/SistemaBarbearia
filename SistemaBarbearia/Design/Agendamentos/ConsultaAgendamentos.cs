@@ -42,7 +42,7 @@ namespace SistemaBarbearia.Design
 			{
 				var dataView = _agendamentoControle.GetDataTable().DefaultView;
 
-				dataView.RowFilter = string.Format("NOME LIKE '%@Nome%'", new { @Nome = txbNome.Text });
+				dataView.RowFilter = string.Format("[NomeCliente] LIKE '%" + txbNome.Text + "%'");
 
 				dgvAgendamentos.DataSource = dataView.Table;
 			}

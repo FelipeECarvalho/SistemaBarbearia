@@ -147,9 +147,9 @@ namespace SistemaBarbearia
 			this.label3.ForeColor = System.Drawing.Color.Orange;
 			this.label3.Location = new System.Drawing.Point(58, -6);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(444, 63);
+			this.label3.Size = new System.Drawing.Size(379, 63);
 			this.label3.TabIndex = 61;
-			this.label3.Text = "Barbearia C Sharp";
+			this.label3.Text = "Barbearia .NET";
 			// 
 			// frmLogin
 			// 

@@ -29,6 +29,8 @@ namespace SistemaBarbearia.Design.Agendamentos
 
 			MessageBox.Show("Servico cadastrado com sucesso!", "Servico", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+			this.DialogResult = DialogResult.OK;
+
 			this.Close();
 		}
 	}

@@ -30,6 +30,7 @@ namespace SistemaBarbearia.Design
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblAgendamentos = new System.Windows.Forms.Label();
 			this.lblCliente = new System.Windows.Forms.Label();
 			this.lblInicio = new System.Windows.Forms.Label();
@@ -142,14 +143,22 @@ namespace SistemaBarbearia.Design
 			this.dgvAgendamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvAgendamentos.ColumnHeadersHeight = 30;
 			this.dgvAgendamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Mongolian Baiti", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvAgendamentos.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvAgendamentos.EnableHeadersVisualStyles = false;
-			this.dgvAgendamentos.Location = new System.Drawing.Point(40, 174);
+			this.dgvAgendamentos.Location = new System.Drawing.Point(21, 174);
 			this.dgvAgendamentos.Name = "dgvAgendamentos";
 			this.dgvAgendamentos.ReadOnly = true;
 			this.dgvAgendamentos.RowHeadersVisible = false;
 			this.dgvAgendamentos.RowTemplate.Height = 25;
 			this.dgvAgendamentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvAgendamentos.Size = new System.Drawing.Size(243, 325);
+			this.dgvAgendamentos.Size = new System.Drawing.Size(274, 325);
 			this.dgvAgendamentos.TabIndex = 14;
 			this.dgvAgendamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgendamentos_CellContentClick);
 			// 

@@ -23,7 +23,7 @@ namespace SistemaBarbearia.Design
 			{
 				DataView dv = _clienteControle.GetDataTable().DefaultView;
 
-				dv.RowFilter = string.Format("Nome LIKE '%@Busca%' OR CPF LIKE '%@Busca%'", new { @Busca = txtBuscaCliente.Text });
+				dv.RowFilter = string.Format("Nome LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "'");
 
 				dgvClientes.DataSource = dv.Table;
 			}

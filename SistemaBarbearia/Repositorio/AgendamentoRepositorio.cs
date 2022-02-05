@@ -26,16 +26,7 @@ namespace SistemaBarbearia.Repositorio
 			}
 		}
 
-
-		public IEnumerable<DateTime> GetDatas(DateTime data)
-		{
-			var query = "SELECT [Data] FROM [Agendamento] WHERE CAST([Data] as DATE) = @Data";
-			var param = new { @Data = data.Date };
-
-			return Database.Connection.Query<DateTime>(query, param);
-		}
-
-		public IEnumerable<Agendamento> GetAll(DateTime data)
+		public IEnumerable<Agendamento> GetWithServicos(DateTime data)
 		{
 			var query = @"SELECT a.*,
 								 s.*
@@ -71,6 +62,14 @@ namespace SistemaBarbearia.Repositorio
 			}
 			, param);
 			return agendamentos;
+		}
+
+		public IEnumerable<Agendamento> Get(DateTime data) 
+		{
+			var query = "SELECT * FROM [Agendamento] WHERE CAST([Data] as DATE) = @Data";
+			var param = new { @Data = data.Date };
+
+			return Database.Connection.Query<Agendamento>(query, param);
 		}
 
 		public Agendamento GetWithServicos(int id)

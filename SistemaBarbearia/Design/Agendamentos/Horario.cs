@@ -25,8 +25,9 @@ namespace SistemaBarbearia.Design
 
 		private void frmHorario_Load(object sender, EventArgs e)
 		{
-			var horariosOcupados = _agendamentoControle.GetDatas(_dataEscolhida).ToList();
+			var agendamentosDoDia = _agendamentoControle.Get(_dataEscolhida).ToList();
 
+			var diaAtual = DateTime.Now.Date;
 			var horaAtual = DateTime.Now.Hour;
 
 			var buttons = new List<Button>
@@ -44,11 +45,16 @@ namespace SistemaBarbearia.Design
 
 			foreach (var button in buttons)
 			{
-				var horaMin = int.Parse(button.Text.Substring(0, 2));
+				var hora = int.Parse(button.Text.Substring(0, 2));
 
-				foreach (var horario in horariosOcupados)
+				foreach (var agendamento in agendamentosDoDia)
 				{
-					if (horaMin == horario.Hour || horaMin <= horaAtual)
+					if (agendamento.Data.Date == diaAtual && hora <= horaAtual) 
+					{
+						button.BackColor = Color.Silver;
+						button.Enabled = false;
+					}
+					if (hora == agendamento.Data.Hour)
 					{
 						button.BackColor = Color.Silver;
 						button.Enabled = false;

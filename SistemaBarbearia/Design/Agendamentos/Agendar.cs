@@ -156,9 +156,13 @@ namespace SistemaBarbearia.Design
 
 		private void lblCadServico_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			new frmServico().Show();
-			cklServicos.Items.Clear();
-			PovoarLista();
+			var servico = new frmServico();
+			servico.ShowDialog();
+			if (servico.DialogResult == DialogResult.OK)
+			{
+				cklServicos.Items.Clear();
+				PovoarLista();
+			}
 
 		}
 	}
