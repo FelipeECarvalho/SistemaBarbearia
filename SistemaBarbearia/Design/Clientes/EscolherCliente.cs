@@ -32,7 +32,7 @@ namespace SistemaBarbearia.Design
 		private void EscolherCliente_Load(object sender, EventArgs e)
 		{
 			dgvClientes.DataSource = _clienteControle.GetDataTable();
-			dgvClientes.AutoGenerateColumns = true;
+			dgvClientes.Columns["Id"].Visible = false;
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

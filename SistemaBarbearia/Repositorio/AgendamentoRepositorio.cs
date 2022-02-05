@@ -26,50 +26,25 @@ namespace SistemaBarbearia.Repositorio
 			}
 		}
 
-		public IEnumerable<Agendamento> GetWithServicos(DateTime data)
+		public IEnumerable<Agendamento> GetMenuList(DateTime data)
 		{
-			var query = @"SELECT a.*,
-								 s.*
+			var query = @"SELECT a.[IdCliente],
+								 a.[Data]
 						  FROM [Agendamento] a 
-						  INNER JOIN
-						  [ServicoAgendamento] sa
-						  ON a.Id = sa.IdAgendamento
-						  INNER JOIN
-						  [Servico] s
-						  ON s.Id = sa.IdServico
 						  WHERE
 						  CAST(a.Data AS DATE) = @Data";
 
 			var param = new { @Data = data.Date };
 
-			var agendamentos = new List<Agendamento>();
-
-			var povoamento = Database.Connection.Query<Agendamento, Servico, Agendamento>(query,
-			(agenda, servico) =>
-			{
-				var age = agendamentos.FirstOrDefault(x => x.Id == agenda.Id);
-				if (age == null)
-				{
-					age = agenda;
-					age.Servicos.Add(servico);
-					agendamentos.Add(age);
-				}
-				else
-				{
-					age.Servicos.Add(servico);
-				}
-				return agenda;
-			}
-			, param);
-			return agendamentos;
+			return Database.Connection.Query<Agendamento>(query, param);
 		}
 
-		public IEnumerable<Agendamento> Get(DateTime data) 
+		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data) 
 		{
-			var query = "SELECT * FROM [Agendamento] WHERE CAST([Data] as DATE) = @Data";
+			var query = "SELECT [Data] FROM [Agendamento] WHERE CAST([Data] as DATE) = @Data";
 			var param = new { @Data = data.Date };
 
-			return Database.Connection.Query<Agendamento>(query, param);
+			return Database.Connection.Query<DateTime>(query, param);
 		}
 
 		public Agendamento GetWithServicos(int id)
@@ -78,7 +53,6 @@ namespace SistemaBarbearia.Repositorio
 			var agendamento = new Agendamento();
 
 			agendamento = Get(id);
-
 			agendamento.Servicos.AddRange(servicoControle.GetByAgendamento(id).ToList());
 
 			return agendamento;

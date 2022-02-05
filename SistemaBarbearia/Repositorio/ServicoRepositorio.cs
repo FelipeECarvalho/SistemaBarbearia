@@ -9,7 +9,7 @@ namespace SistemaBarbearia.Repositorio
 
 		public IEnumerable<Servico> GetByAgendamento(int agendamentoId)
 		{
-			var query = @"SELECT s.*
+			var query = @"SELECT [Descricao]
 						  FROM [Servico] s
 						  INNER JOIN
 						  [ServicoAgendamento] sa

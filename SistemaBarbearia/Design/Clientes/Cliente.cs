@@ -49,6 +49,7 @@ namespace SistemaBarbearia.Design
 		private void frmCliente_Load(object sender, EventArgs e)
 		{
 			dgvClientes.DataSource = _clienteControle.GetDataTable();
+			dgvClientes.Columns["Id"].Visible = false;
 		}
 
 		private void btnExcluirCliente_Click(object sender, EventArgs e)
@@ -65,8 +66,7 @@ namespace SistemaBarbearia.Design
 				return;
 			}
 
-			var cliente = _clienteControle.Get(txbCpf.Text);
-			_clienteControle.Delete(cliente);
+			_clienteControle.Delete(_clienteControle.Get(txbCpf.Text));
 
 			txbNome.Text = "";
 			txbCpf.Text = "";

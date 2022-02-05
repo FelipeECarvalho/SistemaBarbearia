@@ -27,19 +27,27 @@ namespace SistemaBarbearia.Controle
 			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel inserir cadastro, verifique a conexão. \n {e.Source}"); }
 		}
 
-		public DataTable GetDataTable(DateTime? data = null)
+		public DataTable GetDataTable()
 		{
-			IEnumerable<Agendamento> agendamentos;
 			try
 			{
 				using (var conexao = new Conexao())
 				{
-					if (!data.HasValue)
-						agendamentos = _agendamentoRepositorio.Get();
-					else
-						agendamentos = _agendamentoRepositorio.GetWithServicos(data.Value);
+					return _agendamentoRepositorio.GetDataTable(_agendamentoRepositorio.Get().ToList());
+				}
+			}
+			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }
 
-					return _agendamentoRepositorio.GetDataTable(agendamentos.ToList());
+			return null;
+		}
+
+		public DataTable GetMenuDataTable(DateTime data)
+		{
+			try
+			{
+				using (var conexao = new Conexao())
+				{
+					return _agendamentoRepositorio.GetDataTable(_agendamentoRepositorio.GetMenuList(data).ToList());
 				}
 			}
 			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }
@@ -61,13 +69,13 @@ namespace SistemaBarbearia.Controle
 			return null;
 		}
 
-		public IEnumerable<Agendamento> Get(DateTime data) 
+		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data) 
 		{
 			try 
 			{
 				using (var conexao = new Conexao())
 				{
-					return  _agendamentoRepositorio.Get(data);
+					return  _agendamentoRepositorio.GetDatasAgendadas(data);
 				}
 			}
 			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }

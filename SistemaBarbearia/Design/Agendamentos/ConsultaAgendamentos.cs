@@ -106,7 +106,7 @@ namespace SistemaBarbearia.Design
 
 				foreach (var servico in agendamento.Servicos)
 				{
-					lboServicosEscolhidos.Items.Add(servico);
+					lboServicosEscolhidos.Items.Add(servico.Descricao);
 				}
 			}
 

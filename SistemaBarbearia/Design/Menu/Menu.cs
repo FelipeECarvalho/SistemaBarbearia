@@ -31,10 +31,10 @@ namespace SistemaBarbearia.Design
 
 		private void frmMenu_Load(object sender, EventArgs e)
 		{
-			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable(DateTime.Now);
-			dgvAgendamentos.Columns["Id"].Visible = false;
+			dgvAgendamentos.DataSource = _agendamentoControle.GetMenuDataTable(DateTime.Now);
 			dgvAgendamentos.Columns["IdCliente"].Visible = false;
 			dgvAgendamentos.Columns["ValorTotal"].Visible = false;
+			dgvAgendamentos.Columns["Id"].Visible = false;
 			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
 		}
 

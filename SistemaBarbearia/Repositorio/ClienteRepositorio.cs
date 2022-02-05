@@ -7,8 +7,7 @@ namespace SistemaBarbearia.Repositorio
 	{
 		public Cliente Get(string cpf)
 		{
-			var query = "SELECT * FROM [Cliente] WHERE [Cpf] = @Cpf";
-
+			var query = "SELECT [Id], [Cpf], [Nome], [Telefone], [Email] FROM [Cliente] WHERE [Cpf] = @Cpf";
 			var param = new { @Cpf = cpf };
 
 			return Database.Connection.QueryFirst<Cliente>(query, param);
