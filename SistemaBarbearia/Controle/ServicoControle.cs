@@ -1,7 +1,7 @@
 ﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {

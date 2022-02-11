@@ -1,6 +1,6 @@
 ﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {

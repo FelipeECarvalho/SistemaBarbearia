@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace SistemaBarbearia
 {
@@ -8,7 +8,7 @@ namespace SistemaBarbearia
 	{
 		public Conexao()
 		{
-			Database.Connection = new SqlConnection("Server=localhost,1433;Database=Barbearia;User Id=sa;Password=1q2w3e4r@#$;Trusted_Connection=False; TrustServerCertificate=True;");
+			Database.Connection = new SqlConnection("Server=localhost,1433;Database=Barbearia;UserId=sa;Password= 1q2w3e4r@#$;Trusted_Connection=False;TrustServerCertificate=True;");
 
 			Database.Connection.Open();
 		}
