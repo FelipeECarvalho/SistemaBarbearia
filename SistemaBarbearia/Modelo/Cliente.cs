@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using System.Collections.Generic;
 
 namespace SistemaBarbearia.Modelo
 {
@@ -10,6 +11,8 @@ namespace SistemaBarbearia.Modelo
 		public string Nome { get; set; }
 		public string Telefone { get; set; }
 		public string Email { get; set; }
+
+		public readonly List<Agendamento> Agendamentos;
 
 		public void SetNome(string nome)
 		{

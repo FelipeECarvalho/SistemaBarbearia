@@ -3,15 +3,16 @@
 namespace SistemaBarbearia.Modelo
 {
 	[Table("Servico")]
-	class Servico
+	public class Servico
 	{
 		public int Id { get; set; }
 		public string Descricao { get; set; }
-		public decimal Valor { get; set; }
+
+		public readonly decimal Valor;
 
 		public override string ToString()
 		{
-			return $"{Descricao} - R${Valor.ToString("F2")}";
+			return $"{Descricao} - R${Valor:F2}";
 		}
 	}
 }

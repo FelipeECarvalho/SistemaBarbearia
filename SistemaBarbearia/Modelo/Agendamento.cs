@@ -1,39 +1,23 @@
-﻿using Dapper.Contrib.Extensions;
-using SistemaBarbearia.Controle;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBarbearia.Modelo
 {
 	[Table("Agendamento")]
-	class Agendamento
+	public class Agendamento
 	{
 		public int Id { get; set; }
 		public int IdCliente { get; set; }
 		public DateTime Data { get; set; }
 		public decimal ValorTotal { get; set; }
 
-		[Write(false)]
-		public List<Servico> Servicos { get; set; }
-		[Write(false)]
-		public string NomeCliente
-		{
-			get
-			{
-				return _clienteControle.Get(IdCliente).Nome;
-			}
-			set
-			{
-				NomeCliente = value;
-			}
-		}
-
-		private ClienteControle _clienteControle;
+		public readonly List<Servico> Servicos;
+		public Cliente Cliente { get; set; }
 
 		public Agendamento()
 		{
 			Servicos = new List<Servico>();
-			_clienteControle = new ClienteControle();
 		}
 	}
 }
