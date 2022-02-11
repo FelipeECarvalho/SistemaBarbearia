@@ -51,10 +51,8 @@ namespace SistemaBarbearia.Design
 
 		private void frmAgendamentos_Load(object sender, EventArgs e)
 		{
-			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable();
-			dgvAgendamentos.Columns["Id"].Visible = false;
-			dgvAgendamentos.Columns["IdCliente"].Visible = false;
-			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
+			ZerarTable();
+			
 		}
 
 
@@ -79,9 +77,8 @@ namespace SistemaBarbearia.Design
 			txbValor.Text = "";
 
 			lboServicosEscolhidos.Items.Clear();
-			dgvAgendamentos.DataSource = null;
-			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable();
 
+			ZerarTable();
 
 			MessageBox.Show("Agendamento excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
@@ -94,14 +91,12 @@ namespace SistemaBarbearia.Design
 				_linhaAtual = dgvAgendamentos.CurrentRow.Index;
 
 				var agendamento = _agendamentoControle.Get((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
-
-				txbData.Text = $"{agendamento.Data}";
-
 				var cliente = _clienteControle.Get(agendamento.IdCliente);
 
+
+				txbData.Text = $"{agendamento.Data}";
 				txbClienteNome.Text = cliente.Nome;
 				txbClienteTelefone.Text = cliente.Telefone;
-
 				txbValor.Text = agendamento.ValorTotal.ToString("F2");
 
 				foreach (var servico in agendamento.Servicos)
@@ -109,6 +104,16 @@ namespace SistemaBarbearia.Design
 					lboServicosEscolhidos.Items.Add(servico.Descricao);
 				}
 			}
+
+		}
+		private void ZerarTable()
+		{
+			dgvAgendamentos.DataSource = null;
+			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable();
+
+			dgvAgendamentos.Columns["Id"].Visible = false;
+			dgvAgendamentos.Columns["IdCliente"].Visible = false;
+			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
 
 		}
 	}

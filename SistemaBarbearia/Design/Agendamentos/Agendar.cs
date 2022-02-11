@@ -38,6 +38,8 @@ namespace SistemaBarbearia.Design
 		private void Agendar_Load(object sender, EventArgs e)
 		{
 			PovoarLista();
+			_agendamento.Data = dtpData.Value.Date;
+			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
 		}
 
 		private void lblAgendamentos_Click(object sender, EventArgs e)
@@ -147,11 +149,14 @@ namespace SistemaBarbearia.Design
 
 		private void ZerarResumo()
 		{
+			_agendamento = new Agendamento();
 			lblTotal.Text = "Total R$";
 			lblHorario.Text = "Horário: ";
-			lblData.Text = "Data: ";
+			_agendamento.Data = dtpData.Value.Date;
+			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
+			txbCpf.Text = "";
+			txbNome.Text = "";
 			lboServicosEscolhidos.Items.Clear();
-			_agendamento = new Agendamento();
 		}
 
 		private void lblCadServico_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

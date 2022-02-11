@@ -41,15 +41,13 @@ namespace SistemaBarbearia.Design
 
 			if (cadastro.DialogResult == DialogResult.OK)
 			{
-				dgvClientes.DataSource = null;
-				dgvClientes.DataSource = _clienteControle.GetDataTable();
+				GetDataTable();
 			}
 		}
 
 		private void frmCliente_Load(object sender, EventArgs e)
 		{
-			dgvClientes.DataSource = _clienteControle.GetDataTable();
-			dgvClientes.Columns["Id"].Visible = false;
+			GetDataTable();
 		}
 
 		private void btnExcluirCliente_Click(object sender, EventArgs e)
@@ -73,10 +71,9 @@ namespace SistemaBarbearia.Design
 			txbEmail.Text = "";
 			txbTelefone.Text = "";
 
-			dgvClientes.DataSource = null;
-			dgvClientes.DataSource = _clienteControle.GetDataTable();
-
 			MessageBox.Show("Cliente excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			GetDataTable();
 		}
 
 		private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -127,9 +124,7 @@ namespace SistemaBarbearia.Design
 
 			MessageBox.Show("Cliente atualizado com sucesso!", "Atualizacao", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			ZerarUpdate();
-
-			dgvClientes.DataSource = null;
-			dgvClientes.DataSource = _clienteControle.GetDataTable();
+			GetDataTable();
 		}
 
 		private void ZerarUpdate()
@@ -160,5 +155,11 @@ namespace SistemaBarbearia.Design
 			txbEmail.ReadOnly = false;
 		}
 
+		public void GetDataTable()
+		{
+			dgvClientes.DataSource = null;
+			dgvClientes.DataSource = _clienteControle.GetDataTable();
+			dgvClientes.Columns["Id"].Visible = false;
+		}
 	}
 }

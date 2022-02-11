@@ -45,8 +45,6 @@ namespace SistemaBarbearia.Repositorio
 			var propriedades = TypeDescriptor.GetProperties(typeof(T));
 			var tabela = new DataTable();
 
-			//Mapeamento das propriedades da classe para a tabela.
-
 			for (int i = 0; i < propriedades.Count; i++)
 			{
 				PropertyDescriptor propriedade = propriedades[i];
@@ -64,8 +62,6 @@ namespace SistemaBarbearia.Repositorio
 			}
 
 			var valores = new object[propriedades.Count];
-
-			// Povoamento da tabela. Ele quebra o tipo complexo em tipos primitivos e insere na tabela nos seus respectivos campos.
 
 			foreach (var item in lista)
 			{

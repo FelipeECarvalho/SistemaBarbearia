@@ -69,13 +69,13 @@ namespace SistemaBarbearia.Controle
 			return null;
 		}
 
-		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data) 
+		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)
 		{
-			try 
+			try
 			{
 				using (var conexao = new Conexao())
 				{
-					return  _agendamentoRepositorio.GetDatasAgendadas(data);
+					return _agendamentoRepositorio.GetDatasAgendadas(data);
 				}
 			}
 			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }
@@ -90,8 +90,7 @@ namespace SistemaBarbearia.Controle
 			{
 				using (var conexao = new Conexao())
 				{
-					var agendamento = Get(id);
-					_agendamentoRepositorio.Delete(agendamento);
+					_agendamentoRepositorio.Delete(id);
 				}
 			}
 			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel deletar o agendamento. Verifique a conexão. \n {e.Source}"); }

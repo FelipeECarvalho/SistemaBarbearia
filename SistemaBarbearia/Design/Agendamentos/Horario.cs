@@ -49,7 +49,7 @@ namespace SistemaBarbearia.Design
 
 				foreach (var horarioOcupado in agendamentosDoDia)
 				{
-					if (horarioOcupado.Date == diaAtual && hora <= horaAtual) 
+					if (horarioOcupado.Date == diaAtual && hora <= horaAtual)
 					{
 						button.BackColor = Color.Silver;
 						button.Enabled = false;

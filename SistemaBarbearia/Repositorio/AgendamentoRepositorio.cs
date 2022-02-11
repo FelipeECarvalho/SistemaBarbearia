@@ -21,8 +21,7 @@ namespace SistemaBarbearia.Repositorio
 
 			foreach (var servico in servicos)
 			{
-				var param = new { @IdAgendamento = agendamento.Id, @IdServico = servico.Id };
-				Database.Connection.Execute(query, param);
+				Database.Connection.Execute(query, new { @IdAgendamento = agendamento.Id, @IdServico = servico.Id });
 			}
 		}
 
@@ -39,7 +38,7 @@ namespace SistemaBarbearia.Repositorio
 			return Database.Connection.Query<Agendamento>(query, param);
 		}
 
-		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data) 
+		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)
 		{
 			var query = "SELECT [Data] FROM [Agendamento] WHERE CAST([Data] as DATE) = @Data";
 			var param = new { @Data = data.Date };
