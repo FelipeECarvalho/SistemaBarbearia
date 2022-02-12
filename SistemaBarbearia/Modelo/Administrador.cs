@@ -1,12 +1,13 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBarbearia.Modelo
 {
+	[Table("Administrador")]
 	public class Administrador
 	{
 		public int Id { get; set; }
 		public string Usuario { get; set; }
-		private string _senha { get; set; }
+		public string Senha { get; set; }
 		public string Nome { get; set; }
 	}
 }

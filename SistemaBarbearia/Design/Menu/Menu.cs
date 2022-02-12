@@ -12,7 +12,6 @@ namespace SistemaBarbearia.Design
 		public frmMenu()
 		{
 			InitializeComponent();
-			lblNome.Text += " " + Program.Adm.Nome;
 			_agendamentoControle = new AgendamentoControle();
 			_clienteControle = new ClienteControle();
 		}
@@ -31,7 +30,10 @@ namespace SistemaBarbearia.Design
 
 		private void frmMenu_Load(object sender, EventArgs e)
 		{
+			lblNome.Text += " " + Program.Adm.Nome;
+
 			dgvAgendamentos.DataSource = _agendamentoControle.GetMenuDataTable(DateTime.Now);
+
 			dgvAgendamentos.Columns["IdCliente"].Visible = false;
 			dgvAgendamentos.Columns["ValorTotal"].Visible = false;
 			dgvAgendamentos.Columns["Id"].Visible = false;

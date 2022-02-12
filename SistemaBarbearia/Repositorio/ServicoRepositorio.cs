@@ -1,24 +1,20 @@
-﻿using Dapper;
-using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Modelo;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaBarbearia.Repositorio
 {
-	class ServicoRepositorio : RepositorioBase<Servico>
+	class ServicoRepositorio : RepositorioBase
 	{
-
-		public IEnumerable<Servico> GetByAgendamento(int agendamentoId)
+		public IEnumerable<Servico> Get()
 		{
-			var query = @"SELECT [Descricao]
-						  FROM [Servico] s
-						  INNER JOIN
-						  [ServicoAgendamento] sa
-						  ON s.Id = sa.[IdServico]
-						  WHERE sa.[IdAgendamento] = @AgendamentoId";
+			return context.Servicos.ToList();
+		}
 
-			var param = new { @AgendamentoId = agendamentoId };
-
-			return Database.Connection.Query<Servico>(query, param);
+		public void Create(Servico servico) 
+		{
+			context.Servicos.Add(servico);
+			context.SaveChanges();
 		}
 	}
 }

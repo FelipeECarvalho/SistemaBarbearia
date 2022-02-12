@@ -17,17 +17,12 @@ namespace SistemaBarbearia
 
 		private void btnEntrar_Click(object sender, EventArgs e)
 		{
-
-			var adm = _loginControle.Login(txbUsuario.Text.ToLower(), txbSenha.Text);
+			var adm = _loginControle.Login(txbUsuario.Text, txbSenha.Text);
 
 			if (adm == null)
-			{
-				MessageBox.Show($"USUÁRIO OU SENHA INVÁLIDOS", "ControleException", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
-			}
 
 			Program.Adm = adm;
-
 			new frmMenu().Show();
 			this.Hide();
 		}

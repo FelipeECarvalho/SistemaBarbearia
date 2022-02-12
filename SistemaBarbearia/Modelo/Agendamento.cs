@@ -8,11 +8,11 @@ namespace SistemaBarbearia.Modelo
 	public class Agendamento
 	{
 		public int Id { get; set; }
-		public int IdCliente { get; set; }
 		public DateTime Data { get; set; }
 		public decimal ValorTotal { get; set; }
 
 		public readonly List<Servico> Servicos;
+		public int IdCliente { get; set; }
 		public Cliente Cliente { get; set; }
 
 		public Agendamento()

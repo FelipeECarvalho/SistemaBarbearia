@@ -47,7 +47,7 @@ namespace SistemaBarbearia
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label1.Location = new System.Drawing.Point(168, 246);
+			this.label1.Location = new System.Drawing.Point(119, 261);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(69, 21);
 			this.label1.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace SistemaBarbearia
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label2.Location = new System.Drawing.Point(168, 315);
+			this.label2.Location = new System.Drawing.Point(119, 330);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 21);
 			this.label2.TabIndex = 1;
@@ -66,7 +66,7 @@ namespace SistemaBarbearia
 			// txbUsuario
 			// 
 			this.txbUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txbUsuario.Location = new System.Drawing.Point(168, 279);
+			this.txbUsuario.Location = new System.Drawing.Point(119, 294);
 			this.txbUsuario.Name = "txbUsuario";
 			this.txbUsuario.Size = new System.Drawing.Size(194, 23);
 			this.txbUsuario.TabIndex = 2;
@@ -74,7 +74,7 @@ namespace SistemaBarbearia
 			// txbSenha
 			// 
 			this.txbSenha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txbSenha.Location = new System.Drawing.Point(168, 346);
+			this.txbSenha.Location = new System.Drawing.Point(119, 361);
 			this.txbSenha.Name = "txbSenha";
 			this.txbSenha.PasswordChar = '*';
 			this.txbSenha.Size = new System.Drawing.Size(194, 23);
@@ -86,7 +86,7 @@ namespace SistemaBarbearia
 			this.btnEntrar.BackColor = System.Drawing.Color.LightSkyBlue;
 			this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.btnEntrar.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-			this.btnEntrar.Location = new System.Drawing.Point(287, 391);
+			this.btnEntrar.Location = new System.Drawing.Point(238, 406);
 			this.btnEntrar.Name = "btnEntrar";
 			this.btnEntrar.Size = new System.Drawing.Size(75, 35);
 			this.btnEntrar.TabIndex = 4;
@@ -99,7 +99,7 @@ namespace SistemaBarbearia
 			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
 			this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-			this.pictureBox1.Location = new System.Drawing.Point(177, 87);
+			this.pictureBox1.Location = new System.Drawing.Point(128, 102);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(172, 137);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -111,7 +111,7 @@ namespace SistemaBarbearia
 			this.btnSair.BackColor = System.Drawing.Color.LightSkyBlue;
 			this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.btnSair.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-			this.btnSair.Location = new System.Drawing.Point(168, 391);
+			this.btnSair.Location = new System.Drawing.Point(119, 406);
 			this.btnSair.Name = "btnSair";
 			this.btnSair.Size = new System.Drawing.Size(75, 35);
 			this.btnSair.TabIndex = 7;
@@ -123,7 +123,7 @@ namespace SistemaBarbearia
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-			this.label5.Location = new System.Drawing.Point(177, 60);
+			this.label5.Location = new System.Drawing.Point(143, 75);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(0, 20);
 			this.label5.TabIndex = 10;
@@ -133,7 +133,7 @@ namespace SistemaBarbearia
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.label6.ForeColor = System.Drawing.Color.Goldenrod;
-			this.label6.Location = new System.Drawing.Point(183, 57);
+			this.label6.Location = new System.Drawing.Point(134, 72);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(161, 27);
 			this.label6.TabIndex = 11;
@@ -145,7 +145,7 @@ namespace SistemaBarbearia
 			this.label3.BackColor = System.Drawing.Color.Transparent;
 			this.label3.Font = new System.Drawing.Font("MV Boli", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.label3.ForeColor = System.Drawing.Color.Orange;
-			this.label3.Location = new System.Drawing.Point(58, -6);
+			this.label3.Location = new System.Drawing.Point(24, 9);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(379, 63);
 			this.label3.TabIndex = 61;
@@ -156,7 +156,7 @@ namespace SistemaBarbearia
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(533, 476);
+			this.ClientSize = new System.Drawing.Size(445, 476);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);

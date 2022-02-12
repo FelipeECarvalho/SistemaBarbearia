@@ -1,5 +1,4 @@
-﻿using Dapper;
-using SistemaBarbearia.Controle;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaBarbearia.Modelo;
 using System;
 using System.Collections.Generic;
@@ -7,54 +6,39 @@ using System.Linq;
 
 namespace SistemaBarbearia.Repositorio
 {
-	class AgendamentoRepositorio : RepositorioBase<Agendamento>
+	class AgendamentoRepositorio : RepositorioBase
 	{
-		public void Create(Agendamento agendamento, List<Servico> servicos)
+		public void Create(Agendamento agendamento)
 		{
-			Create(agendamento);
+			context.Agendamentos.Add(agendamento);
+			context.SaveChanges();
+		}
 
-			var query = @"INSERT INTO [ServicoAgendamento](IdAgendamento, IdServico)
-							VALUES(
-							@IdAgendamento,
-							@IdServico
-							)";
-
-			foreach (var servico in servicos)
-			{
-				Database.Connection.Execute(query, new { @IdAgendamento = agendamento.Id, @IdServico = servico.Id });
-			}
+		public void Delete(int id) 
+		{
+			var agendamento = context.Agendamentos.FirstOrDefault(x => x.Id == id);
+			context.Remove(agendamento);
+			context.SaveChanges();
 		}
 
 		public IEnumerable<Agendamento> GetMenuList(DateTime data)
-		{
-			var query = @"SELECT a.[IdCliente],
-								 a.[Data]
-						  FROM [Agendamento] a 
-						  WHERE
-						  CAST(a.Data AS DATE) = @Data";
+			=> context.Agendamentos
+			.Include(x => x.Cliente)
+			.Where(x => x.Data.Date == data.Date);
 
-			var param = new { @Data = data.Date };
-
-			return Database.Connection.Query<Agendamento>(query, param);
-		}
 
 		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)
-		{
-			var query = "SELECT [Data] FROM [Agendamento] WHERE CAST([Data] as DATE) = @Data";
-			var param = new { @Data = data.Date };
+			=> context.Agendamentos
+			.Select(x => x.Data)
+			.Where(x => x.Date == data.Date);
 
-			return Database.Connection.Query<DateTime>(query, param);
-		}
 
-		public Agendamento GetWithServicos(int id)
-		{
-			var servicoControle = new ServicoControle();
-			var agendamento = new Agendamento();
+		public Agendamento Get(int id)
+			=> context.Agendamentos
+			.Include(x => x.Servicos)
+			.FirstOrDefault(x => x.Id == id);
 
-			agendamento = Get(id);
-			agendamento.Servicos.AddRange(servicoControle.GetByAgendamento(id).ToList());
-
-			return agendamento;
-		}
+		public IEnumerable<Agendamento> Get()
+			=> context.Agendamentos;
 	}
 }

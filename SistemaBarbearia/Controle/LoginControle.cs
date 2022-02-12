@@ -1,6 +1,6 @@
-﻿using SistemaBarbearia.Modelo;
+﻿using Microsoft.Data.SqlClient;
+using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
-using Microsoft.Data.SqlClient;
 
 namespace SistemaBarbearia.Controle
 {
@@ -12,16 +12,7 @@ namespace SistemaBarbearia.Controle
 
 		public Administrador Login(string login, string senha)
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					return _loginRepositorio.Acessar(login, senha);
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar. Verifique a conexão. \n {e.Source}"); }
-
-			return null;
+			return _loginRepositorio.Acessar(login, senha);
 		}
 	}
 }

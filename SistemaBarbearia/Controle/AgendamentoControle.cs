@@ -1,9 +1,9 @@
-﻿using SistemaBarbearia.Modelo;
+﻿using Microsoft.Data.SqlClient;
+using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 
 namespace SistemaBarbearia.Controle
@@ -17,83 +17,34 @@ namespace SistemaBarbearia.Controle
 
 		public void Create(Agendamento agendamento, List<Servico> servicos)
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					_agendamentoRepositorio.Create(agendamento, servicos);
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel inserir cadastro, verifique a conexão. \n {e.Source}"); }
+
+			_agendamentoRepositorio.Create(agendamento);
+
 		}
 
-		public DataTable GetDataTable()
+		public IEnumerable<Agendamento> Get()
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					return _agendamentoRepositorio.GetDataTable(_agendamentoRepositorio.Get().ToList());
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }
-
-			return null;
+			return _agendamentoRepositorio.Get();
 		}
 
-		public DataTable GetMenuDataTable(DateTime data)
+		public IEnumerable<Agendamento> GetMenuDataTable(DateTime data)
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					return _agendamentoRepositorio.GetDataTable(_agendamentoRepositorio.GetMenuList(data).ToList());
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }
-
-			return null;
+			return _agendamentoRepositorio.GetMenuList(data);
 		}
 
 		public Agendamento Get(int id)
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					return _agendamentoRepositorio.GetWithServicos(id);
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar o agendamento. Verifique a conexão. \n {e.Source}"); }
-
-			return null;
+			return _agendamentoRepositorio.Get(id);
 		}
 
 		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					return _agendamentoRepositorio.GetDatasAgendadas(data);
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel acessar os agendamentos. Verifique a conexão. \n {e.Source}"); }
-
-			return null;
+			return _agendamentoRepositorio.GetDatasAgendadas(data);
 		}
-
 
 		public void Delete(int id)
 		{
-			try
-			{
-				using (var conexao = new Conexao())
-				{
-					_agendamentoRepositorio.Delete(id);
-				}
-			}
-			catch (SqlException e) { OnControleExceptionRaised($"Não foi possivel deletar o agendamento. Verifique a conexão. \n {e.Source}"); }
+			_agendamentoRepositorio.Delete(id);
 		}
 	}
 }

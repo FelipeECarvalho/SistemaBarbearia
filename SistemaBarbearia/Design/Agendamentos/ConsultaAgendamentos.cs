@@ -52,7 +52,7 @@ namespace SistemaBarbearia.Design
 		private void frmAgendamentos_Load(object sender, EventArgs e)
 		{
 			ZerarTable();
-			
+
 		}
 
 
