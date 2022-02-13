@@ -35,5 +35,12 @@ namespace SistemaBarbearia.Modelo
 			}
 		}
 
+		public Cliente(string cpf, string nome, string telefone, string email)
+		{
+			Cpf = cpf;
+			Nome = nome;
+			Telefone = telefone;
+			Email = email;
+		}
 	}
 }

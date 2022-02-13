@@ -14,5 +14,11 @@ namespace SistemaBarbearia.Modelo
 		{
 			return $"{Descricao} - R${Valor:F2}";
 		}
+
+		public Servico(string descricao, decimal valor)
+		{
+			Descricao = descricao;
+			Valor = valor;
+		}
 	}
 }

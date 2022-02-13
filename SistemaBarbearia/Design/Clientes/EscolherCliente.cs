@@ -1,4 +1,5 @@
 ﻿using SistemaBarbearia.Controle;
+using SistemaBarbearia.Modelo;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace SistemaBarbearia.Design
 	public partial class frmEscolherCliente : Form
 	{
 		private ClienteControle _clienteControle;
-		public int RetornarIdCliente { get; set; }
+		public Cliente RetornarCliente { get; set; }
 
 
 		public frmEscolherCliente()
@@ -21,18 +22,17 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
-				DataView dv = _clienteControle.GetDataTable().DefaultView;
+				//DataView dv = _clienteControle.GetDataTable().DefaultView;
 
-				dv.RowFilter = string.Format("Nome LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "'");
+				//dv.RowFilter = string.Format("Nome LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "'");
 
-				dgvClientes.DataSource = dv.Table;
+				//dgvClientes.DataSource = dv.Table;
 			}
 		}
 
 		private void EscolherCliente_Load(object sender, EventArgs e)
 		{
-			dgvClientes.DataSource = _clienteControle.GetDataTable();
-			dgvClientes.Columns["Id"].Visible = false;
+			dgvClientes.DataSource = _clienteControle.Get();
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
@@ -44,8 +44,7 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.RowIndex >= 0)
 			{
-				DataGridViewRow dataGrid = dgvClientes.Rows[e.RowIndex];
-				RetornarIdCliente = (int)dataGrid.Cells["Id"].Value;
+				RetornarCliente = dgvClientes.SelectedRows[0].DataBoundItem as Cliente;
 			}
 			this.DialogResult = DialogResult.OK;
 			this.Close();

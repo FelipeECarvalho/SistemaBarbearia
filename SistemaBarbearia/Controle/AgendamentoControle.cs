@@ -27,7 +27,7 @@ namespace SistemaBarbearia.Controle
 			return _agendamentoRepositorio.Get();
 		}
 
-		public IEnumerable<Agendamento> GetMenuDataTable(DateTime data)
+		public IEnumerable<Agendamento> GetMenu(DateTime data)
 		{
 			return _agendamentoRepositorio.GetMenuList(data);
 		}

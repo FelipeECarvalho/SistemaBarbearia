@@ -1,4 +1,5 @@
 ﻿using SistemaBarbearia.Controle;
+using SistemaBarbearia.Modelo;
 using System;
 using System.Windows.Forms;
 
@@ -40,11 +41,6 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
-				var dataView = _agendamentoControle.GetDataTable().DefaultView;
-
-				dataView.RowFilter = string.Format("[NomeCliente] LIKE '%" + txbNome.Text + "%'");
-
-				dgvAgendamentos.DataSource = dataView.Table;
 			}
 
 		}
@@ -58,17 +54,6 @@ namespace SistemaBarbearia.Design
 
 		private void btnExcluirAgendamento_Click(object sender, EventArgs e)
 		{
-			if (_linhaAtual < 0)
-			{
-				MessageBox.Show("Erro ao excluir, selecione um agendamento", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			if (MessageBox.Show("Tem certeza que deseja excluir o agendamento?", "Exclusao", MessageBoxButtons.YesNo) == DialogResult.No)
-			{
-				return;
-			}
-
 			_agendamentoControle.Delete((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
 
 			txbClienteNome.Text = "";
@@ -77,10 +62,7 @@ namespace SistemaBarbearia.Design
 			txbValor.Text = "";
 
 			lboServicosEscolhidos.Items.Clear();
-
 			ZerarTable();
-
-			MessageBox.Show("Agendamento excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void dgvAgendamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -90,9 +72,9 @@ namespace SistemaBarbearia.Design
 				lboServicosEscolhidos.Items.Clear();
 				_linhaAtual = dgvAgendamentos.CurrentRow.Index;
 
-				var agendamento = _agendamentoControle.Get((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
-				var cliente = _clienteControle.Get(agendamento.IdCliente);
+				var agendamento = dgvAgendamentos.SelectedRows[0].DataBoundItem as Agendamento;
 
+				var cliente = _clienteControle.Get(agendamento.IdCliente);
 
 				txbData.Text = $"{agendamento.Data}";
 				txbClienteNome.Text = cliente.Nome;
@@ -109,12 +91,7 @@ namespace SistemaBarbearia.Design
 		private void ZerarTable()
 		{
 			dgvAgendamentos.DataSource = null;
-			dgvAgendamentos.DataSource = _agendamentoControle.GetDataTable();
-
-			dgvAgendamentos.Columns["Id"].Visible = false;
-			dgvAgendamentos.Columns["IdCliente"].Visible = false;
-			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
-
+			dgvAgendamentos.DataSource = _agendamentoControle.Get();
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using SistemaBarbearia.Controle;
+using SistemaBarbearia.Modelo;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -35,14 +36,11 @@ namespace SistemaBarbearia.Design
 
 		private void btnCadastro_Click(object sender, EventArgs e)
 		{
-			frmCadastro cadastro = new frmCadastro();
-
+			var cadastro = new frmCadastro();
 			cadastro.ShowDialog();
 
 			if (cadastro.DialogResult == DialogResult.OK)
-			{
 				GetDataTable();
-			}
 		}
 
 		private void frmCliente_Load(object sender, EventArgs e)
@@ -52,27 +50,8 @@ namespace SistemaBarbearia.Design
 
 		private void btnExcluirCliente_Click(object sender, EventArgs e)
 		{
-
-			if (string.IsNullOrEmpty(txbCpf.Text))
-			{
-				MessageBox.Show("Erro ao excluir, selecione um cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			if (MessageBox.Show("Tem certeza que deseja excluir o cliente?", "Exclusao", MessageBoxButtons.YesNo) == DialogResult.No)
-			{
-				return;
-			}
-
 			_clienteControle.Delete(_clienteControle.Get(txbCpf.Text));
-
-			txbNome.Text = "";
-			txbCpf.Text = "";
-			txbEmail.Text = "";
-			txbTelefone.Text = "";
-
-			MessageBox.Show("Cliente excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+			ZerarLabels();
 			GetDataTable();
 		}
 
@@ -80,12 +59,12 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.RowIndex >= 0)
 			{
-				DataGridViewRow dgv = dgvClientes.Rows[e.RowIndex];
+				var cliente = dgvClientes.SelectedRows[0].DataBoundItem as Cliente;
 
-				txbCpf.Text = dgv.Cells["CPF"].Value.ToString();
-				txbNome.Text = dgv.Cells["NOME"].Value.ToString();
-				txbTelefone.Text = dgv.Cells["TELEFONE"].Value.ToString();
-				txbEmail.Text = dgv.Cells["EMAIL"].Value.ToString();
+				txbCpf.Text = cliente.Cpf;
+				txbNome.Text = cliente.Nome;
+				txbTelefone.Text = cliente.Telefone;
+				txbEmail.Text = cliente.Email;
 			}
 		}
 
@@ -93,10 +72,10 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
-				DataView dv = _clienteControle.GetDataTable().DefaultView;
+				//DataView dv = _clienteControle.GetDataTable().DefaultView;
 
-				dv.RowFilter = string.Format("NOME LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "%'");
-				dgvClientes.DataSource = dv.Table;
+				//dv.RowFilter = string.Format("NOME LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "%'");
+				//dgvClientes.DataSource = dv.Table;
 			}
 		}
 
@@ -109,21 +88,10 @@ namespace SistemaBarbearia.Design
 		private void btnOk_Click(object sender, EventArgs e)
 		{
 			var cliente = _clienteControle.Get(txbCpf.Text);
-			if (cliente == null)
-			{
-				MessageBox.Show("Erro ao atualizar, verifique os dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-
 			cliente.SetEmail(txbEmail.Text);
 			cliente.SetNome(txbNome.Text);
 			cliente.SetTelefone(txbTelefone.Text);
-
 			_clienteControle.Update(cliente);
-
-			MessageBox.Show("Cliente atualizado com sucesso!", "Atualizacao", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			ZerarUpdate();
 			GetDataTable();
 		}
 
@@ -137,10 +105,7 @@ namespace SistemaBarbearia.Design
 			txbNome.ReadOnly = true;
 			txbTelefone.ReadOnly = true;
 			txbEmail.ReadOnly = true;
-			txbNome.Text = "";
-			txbCpf.Text = "";
-			txbTelefone.Text = "";
-			txbEmail.Text = "";
+			ZerarLabels();
 		}
 
 		private void btnAtualizar_Click(object sender, EventArgs e)
@@ -158,8 +123,15 @@ namespace SistemaBarbearia.Design
 		public void GetDataTable()
 		{
 			dgvClientes.DataSource = null;
-			dgvClientes.DataSource = _clienteControle.GetDataTable();
-			dgvClientes.Columns["Id"].Visible = false;
+			dgvClientes.DataSource = _clienteControle.Get();
+		}
+
+		public void ZerarLabels() 
+		{
+			txbNome.Text = "";
+			txbCpf.Text = "";
+			txbTelefone.Text = "";
+			txbEmail.Text = "";
 		}
 	}
 }

@@ -63,15 +63,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnAgendar_Click(object sender, EventArgs e)
 		{
-			if ((_agendamento.Data == DateTime.MinValue || _agendamento.Data.Hour == 0) || _agendamento.IdCliente == 0 || _agendamento.ValorTotal == 0)
-			{
-				MessageBox.Show("Não foi possivel agendar, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
 			_agendamentoControle.Create(_agendamento, _agendamento.Servicos);
-
-			MessageBox.Show("Agendamento cadastrado com sucesso!", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			ZerarResumo();
 		}
 
@@ -79,26 +71,17 @@ namespace SistemaBarbearia.Design
 		{
 			var escolherCliente = new frmEscolherCliente();
 
-			var result = escolherCliente.ShowDialog();
-
-			if (result == DialogResult.OK)
+			if (escolherCliente.ShowDialog() == DialogResult.OK)
 			{
-				_agendamento.IdCliente = escolherCliente.RetornarIdCliente;
-				var cliente = _clienteControle.Get(_agendamento.IdCliente);
+				_agendamento.Cliente = escolherCliente.RetornarCliente;
 
-				txbCpf.Text = cliente.Cpf;
-				txbNome.Text = cliente.Nome;
+				txbCpf.Text = _agendamento.Cliente.Cpf;
+				txbNome.Text = _agendamento.Cliente.Nome;
 			}
 		}
 
 		private void btnGuardarServicos_Click(object sender, EventArgs e)
 		{
-			if (cklServicos.CheckedItems.Count == 0)
-			{
-				MessageBox.Show("Nenhum servico escolhido, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
 			_agendamento.Servicos.Clear();
 			lboServicosEscolhidos.Items.Clear();
 			_agendamento.ValorTotal = 0;
@@ -118,18 +101,9 @@ namespace SistemaBarbearia.Design
 
 		private void btnHorario_Click(object sender, EventArgs e)
 		{
-
-			if (dtpData.Value.Date < DateTime.Now.Date || dtpData.Value == DateTime.MinValue)
-			{
-				MessageBox.Show("Data inválida, verifique os dados", "Agendamento", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
 			var horario = new frmHorario(dtpData.Value);
-			horario.ShowDialog();
-
-
-			if (horario.DialogResult == DialogResult.OK)
+			
+			if (horario.ShowDialog() == DialogResult.OK)
 			{
 				var horarioEscolhido = horario.RetornoHorario;
 
@@ -141,8 +115,7 @@ namespace SistemaBarbearia.Design
 
 		private void dtpData_ValueChanged(object sender, EventArgs e)
 		{
-			_agendamento.Data = dtpData.Value.Date;
-			lblHorario.Text = "Horário: ";
+			ZerarHorario();
 			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
 
 		}
@@ -151,8 +124,7 @@ namespace SistemaBarbearia.Design
 		{
 			_agendamento = new Agendamento();
 			lblTotal.Text = "Total R$";
-			lblHorario.Text = "Horário: ";
-			_agendamento.Data = dtpData.Value.Date;
+			ZerarHorario();
 			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
 			txbCpf.Text = "";
 			txbNome.Text = "";
@@ -168,6 +140,13 @@ namespace SistemaBarbearia.Design
 				cklServicos.Items.Clear();
 				PovoarLista();
 			}
+
+		}
+
+		private void ZerarHorario()
+		{
+			lblHorario.Text = "Horário: ";
+			_agendamento.Data = dtpData.Value.Date;
 
 		}
 	}
