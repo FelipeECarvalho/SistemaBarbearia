@@ -12,9 +12,20 @@ namespace SistemaBarbearia.Controle
 	{
 		private readonly ClienteRepositorio _clienteRepositorio;
 
-		public void Create(Cliente cliente)
+		public bool Create(Cliente cliente)
 		{
-			_clienteRepositorio.Create(cliente);
+			try
+			{
+				if (string.IsNullOrEmpty(cliente.Cpf.Trim()) || string.IsNullOrEmpty(cliente.Nome.Trim())|| string.IsNullOrEmpty(cliente.Email.Trim()) || string.IsNullOrEmpty(cliente.Telefone.Trim())) throw new NullReferenceException();
+
+				_clienteRepositorio.Create(cliente);
+
+				OnControleSuccessfullyAction("Cliente criado com sucesso!", "Cliente");
+				return true;
+			}
+			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não pode ser criado. Verifique os dados.", "Cliente"); }
+
+			return false;
 		}
 
 		public Cliente Get(string cpf)
@@ -31,7 +42,14 @@ namespace SistemaBarbearia.Controle
 
 		public Cliente Get(int id)
 		{
-			return _clienteRepositorio.Get(id);
+			try
+			{
+				if (id <= 0) throw new NullReferenceException();
+				return _clienteRepositorio.Get(id) ?? throw new NullReferenceException();
+			}
+			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não encontrado. Verifique os dados.", "Cliente"); }
+
+			return null;
 		}
 
 		public IEnumerable<Cliente> Get()
@@ -41,7 +59,13 @@ namespace SistemaBarbearia.Controle
 
 		public void Update(Cliente cliente)
 		{
-			_clienteRepositorio.Update(cliente);
+			try
+			{
+				if (cliente == null) throw new NullReferenceException();
+				_clienteRepositorio.Update(cliente);
+				OnControleSuccessfullyAction("Cliente atualizado com sucesso!", "Cliente");
+			}
+			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não pode ser atualizado. Verifique os dados.", "Cliente"); }
 		}
 
 		public void Delete(Cliente cliente)
@@ -49,12 +73,16 @@ namespace SistemaBarbearia.Controle
 			try
 			{
 				if (cliente == null) throw new NullReferenceException();
-
 				_clienteRepositorio.Delete(cliente);
-
 				OnControleSuccessfullyAction("Cliente excluído com sucesso!", "Cliente");
 			}
 			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não encontrado. Verifique os dados.", "Cliente"); }
+		}
+
+		public IEnumerable<Cliente> FindClientes(string param) 
+		{
+			if (string.IsNullOrEmpty(param)) return null;
+			return _clienteRepositorio.FindClientes(param);
 		}
 
 		public ClienteControle() => _clienteRepositorio = new ClienteRepositorio();

@@ -29,9 +29,9 @@ namespace SistemaBarbearia.Design
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lblCliente = new System.Windows.Forms.Label();
 			this.lblInicio = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -119,31 +119,31 @@ namespace SistemaBarbearia.Design
 			this.dgvClientes.AllowUserToDeleteRows = false;
 			this.dgvClientes.AllowUserToResizeColumns = false;
 			this.dgvClientes.AllowUserToResizeRows = false;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
 			this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.dgvClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
 			this.dgvClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle11.BackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
 			this.dgvClientes.ColumnHeadersHeight = 30;
 			this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle12;
 			this.dgvClientes.EnableHeadersVisualStyles = false;
 			this.dgvClientes.Location = new System.Drawing.Point(13, 191);
 			this.dgvClientes.Name = "dgvClientes";
@@ -214,6 +214,7 @@ namespace SistemaBarbearia.Design
 			this.txbNome.ReadOnly = true;
 			this.txbNome.Size = new System.Drawing.Size(245, 25);
 			this.txbNome.TabIndex = 20;
+			this.txbNome.TextChanged += new System.EventHandler(this.txbNome_TextChanged);
 			// 
 			// txbCpf
 			// 
@@ -223,6 +224,7 @@ namespace SistemaBarbearia.Design
 			this.txbCpf.ReadOnly = true;
 			this.txbCpf.Size = new System.Drawing.Size(139, 25);
 			this.txbCpf.TabIndex = 21;
+			this.txbCpf.TextChanged += new System.EventHandler(this.txbCpf_TextChanged);
 			// 
 			// txbEmail
 			// 
@@ -232,6 +234,7 @@ namespace SistemaBarbearia.Design
 			this.txbEmail.ReadOnly = true;
 			this.txbEmail.Size = new System.Drawing.Size(245, 25);
 			this.txbEmail.TabIndex = 22;
+			this.txbEmail.TextChanged += new System.EventHandler(this.txbEmail_TextChanged);
 			// 
 			// txbTelefone
 			// 
@@ -242,6 +245,7 @@ namespace SistemaBarbearia.Design
 			this.txbTelefone.ReadOnly = true;
 			this.txbTelefone.Size = new System.Drawing.Size(139, 25);
 			this.txbTelefone.TabIndex = 23;
+			this.txbTelefone.TextChanged += new System.EventHandler(this.txbTelefone_TextChanged);
 			// 
 			// label3
 			// 

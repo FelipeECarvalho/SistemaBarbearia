@@ -34,6 +34,13 @@ namespace SistemaBarbearia.Modelo
 				Telefone = telefone;
 			}
 		}
+		public void SetCpf(string cpf)
+		{
+			if (!string.IsNullOrEmpty(cpf))
+			{
+				Cpf = cpf;
+			}
+		}
 
 		public Cliente(string cpf, string nome, string telefone, string email)
 		{

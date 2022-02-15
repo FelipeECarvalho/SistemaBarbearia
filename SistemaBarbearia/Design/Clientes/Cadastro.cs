@@ -24,7 +24,8 @@ namespace SistemaBarbearia.Design
 		{
 			var cliente = new Cliente(txbCPF.Text, txbNome.Text, txbTelefone.Text, txbEmail.Text);
 
-			_clienteControle.Create(cliente);
+			if (!_clienteControle.Create(cliente))
+				return;
 
 			this.DialogResult = DialogResult.OK;
 			this.Close();

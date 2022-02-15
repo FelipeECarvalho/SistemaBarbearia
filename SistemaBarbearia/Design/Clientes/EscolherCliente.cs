@@ -22,11 +22,8 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
-				//DataView dv = _clienteControle.GetDataTable().DefaultView;
-
-				//dv.RowFilter = string.Format("Nome LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "'");
-
-				//dgvClientes.DataSource = dv.Table;
+				var clientes = _clienteControle.FindClientes(txtBuscaCliente.Text);
+				dgvClientes.DataSource = clientes;
 			}
 		}
 

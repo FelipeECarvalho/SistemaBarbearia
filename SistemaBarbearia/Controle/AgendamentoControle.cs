@@ -1,10 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
-using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 
 namespace SistemaBarbearia.Controle
 {
@@ -15,10 +12,17 @@ namespace SistemaBarbearia.Controle
 		public AgendamentoControle() => _agendamentoRepositorio = new AgendamentoRepositorio();
 
 
-		public void Create(Agendamento agendamento, List<Servico> servicos)
+		public void Create(Agendamento agendamento)
 		{
+			try
+			{
+				if (agendamento == null) throw new NullReferenceException();
 
-			_agendamentoRepositorio.Create(agendamento);
+				_agendamentoRepositorio.Create(agendamento);
+
+				OnControleSuccessfullyAction("Agendamento criado com sucesso!", "Agendamento");
+			}
+			catch (NullReferenceException) { OnControleExceptionRaised("Agendamento não pode ser criado. Verifique os dados.", "Cliente"); }
 
 		}
 
@@ -32,19 +36,22 @@ namespace SistemaBarbearia.Controle
 			return _agendamentoRepositorio.GetMenuList(data);
 		}
 
-		public Agendamento Get(int id)
-		{
-			return _agendamentoRepositorio.Get(id);
-		}
-
 		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)
 		{
 			return _agendamentoRepositorio.GetDatasAgendadas(data);
 		}
 
-		public void Delete(int id)
+		public void Delete(Agendamento agendamento)
 		{
-			_agendamentoRepositorio.Delete(id);
+			try
+			{
+				if (agendamento == null) throw new NullReferenceException();
+				_agendamentoRepositorio.Delete(agendamento);
+
+				OnControleSuccessfullyAction("Agendamento excluído com sucesso!", "Agendamento");
+			}
+			catch (NullReferenceException) { OnControleExceptionRaised("Agendamento não pode ser criado. Verifique os dados.", "Cliente"); }
 		}
+
 	}
 }

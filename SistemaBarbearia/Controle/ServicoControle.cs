@@ -7,9 +7,12 @@ namespace SistemaBarbearia.Controle
 {
 	class ServicoControle : ControleBase
 	{
-		private readonly ServicoRepositorio _servicoRepositorio;
-		public ServicoControle() => _servicoRepositorio = new ServicoRepositorio();
+		private ServicoRepositorio _servicoRepositorio;
 
+		public ServicoControle() 
+		{
+			_servicoRepositorio = new ServicoRepositorio();
+		}
 
 		public IEnumerable<Servico> Get()
 		{

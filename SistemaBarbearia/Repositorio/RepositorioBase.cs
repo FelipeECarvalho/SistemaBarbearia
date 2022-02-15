@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SistemaBarbearia.Repositorio
 {
-	class RepositorioBase<T> : IRepositorio<T> where T: class
+	abstract class RepositorioBase<T> : IRepositorio<T> where T: class
 	{
 		protected BarbeariaDbContext _context;
 
@@ -36,7 +36,7 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				_context.Set<T>().Update(entidade);
+				_context.Entry<T>(entidade).State= EntityState.Modified;
 				Savechange();
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível atualizar. Verifique a conexão."); }

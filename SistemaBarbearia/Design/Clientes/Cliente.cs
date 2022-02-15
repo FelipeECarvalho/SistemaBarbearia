@@ -9,6 +9,7 @@ namespace SistemaBarbearia.Design
 	public partial class frmCliente : Form
 	{
 		private readonly ClienteControle _clienteControle;
+		private Cliente _clienteEscolhido;
 
 		public frmCliente()
 		{
@@ -47,7 +48,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnExcluirCliente_Click(object sender, EventArgs e)
 		{
-			_clienteControle.Delete(_clienteControle.Get(txbCpf.Text));
+			_clienteControle.Delete(_clienteEscolhido);
 			ZerarLabels();
 			GetDataTable();
 		}
@@ -56,12 +57,12 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.RowIndex >= 0)
 			{
-				var cliente = dgvClientes.SelectedRows[0].DataBoundItem as Cliente;
+				_clienteEscolhido = dgvClientes.SelectedRows[0].DataBoundItem as Cliente;
 
-				txbCpf.Text = cliente.Cpf;
-				txbNome.Text = cliente.Nome;
-				txbTelefone.Text = cliente.Telefone;
-				txbEmail.Text = cliente.Email;
+				txbCpf.Text = _clienteEscolhido.Cpf;
+				txbNome.Text = _clienteEscolhido.Nome;
+				txbTelefone.Text = _clienteEscolhido.Telefone;
+				txbEmail.Text = _clienteEscolhido.Email;
 			}
 		}
 
@@ -69,10 +70,8 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
-				//DataView dv = _clienteControle.GetDataTable().DefaultView;
-
-				//dv.RowFilter = string.Format("NOME LIKE '%" + txtBuscaCliente.Text + "%' OR CPF LIKE '%" + txtBuscaCliente.Text + "%'");
-				//dgvClientes.DataSource = dv.Table;
+				var clientes = _clienteControle.FindClientes(txtBuscaCliente.Text);
+				dgvClientes.DataSource = clientes;
 			}
 		}
 
@@ -84,11 +83,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnOk_Click(object sender, EventArgs e)
 		{
-			var cliente = _clienteControle.Get(txbCpf.Text);
-			cliente.SetEmail(txbEmail.Text);
-			cliente.SetNome(txbNome.Text);
-			cliente.SetTelefone(txbTelefone.Text);
-			_clienteControle.Update(cliente);
+			_clienteControle.Update(_clienteEscolhido);
 			GetDataTable();
 		}
 
@@ -99,6 +94,8 @@ namespace SistemaBarbearia.Design
 			txbNome.BorderStyle = BorderStyle.Fixed3D;
 			txbEmail.BorderStyle = BorderStyle.Fixed3D;
 			txbTelefone.BorderStyle = BorderStyle.Fixed3D;
+			txbCpf.BorderStyle = BorderStyle.Fixed3D;
+			txbCpf.ReadOnly = true;
 			txbNome.ReadOnly = true;
 			txbTelefone.ReadOnly = true;
 			txbEmail.ReadOnly = true;
@@ -112,6 +109,8 @@ namespace SistemaBarbearia.Design
 			txbNome.BorderStyle = BorderStyle.FixedSingle;
 			txbEmail.BorderStyle = BorderStyle.FixedSingle;
 			txbTelefone.BorderStyle = BorderStyle.FixedSingle;
+			txbCpf.BorderStyle = BorderStyle.FixedSingle;
+			txbCpf.ReadOnly = false;
 			txbNome.ReadOnly = false;
 			txbTelefone.ReadOnly = false;
 			txbEmail.ReadOnly = false;
@@ -129,6 +128,26 @@ namespace SistemaBarbearia.Design
 			txbCpf.Text = "";
 			txbTelefone.Text = "";
 			txbEmail.Text = "";
+		}
+
+		private void txbNome_TextChanged(object sender, EventArgs e)
+		{
+			_clienteEscolhido.SetNome(txbNome.Text);
+		}
+
+		private void txbEmail_TextChanged(object sender, EventArgs e)
+		{
+			_clienteEscolhido.SetEmail(txbEmail.Text);
+		}
+
+		private void txbTelefone_TextChanged(object sender, EventArgs e)
+		{
+			_clienteEscolhido.SetTelefone(txbTelefone.Text);
+		}
+
+		private void txbCpf_TextChanged(object sender, EventArgs e)
+		{
+			_clienteEscolhido.SetCpf(txbCpf.Text);
 		}
 	}
 }
