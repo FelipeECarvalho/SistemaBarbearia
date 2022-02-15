@@ -8,5 +8,10 @@ namespace SistemaBarbearia.Controle
 		{
 			MessageBox.Show(mensagem, $"{form}Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
+
+		protected void OnControleSuccessfullyAction(string mensagem, string form)
+		{
+			MessageBox.Show(mensagem, form, MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
 	}
 }

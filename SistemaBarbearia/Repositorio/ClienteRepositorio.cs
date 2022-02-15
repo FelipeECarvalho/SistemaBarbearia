@@ -1,36 +1,27 @@
-﻿using SistemaBarbearia.Modelo;
-using System.Collections.Generic;
+﻿using Microsoft.Data.SqlClient;
+using SistemaBarbearia.Data;
+using SistemaBarbearia.Modelo;
 using System.Linq;
 
 namespace SistemaBarbearia.Repositorio
 {
-	class ClienteRepositorio : RepositorioBase
+	class ClienteRepositorio : RepositorioBase<Cliente>
 	{
-		public void Create(Cliente cliente)
+		public ClienteRepositorio() 
 		{
-			context.Clientes.Add(cliente);
-			context.SaveChanges();
+			_context = new BarbeariaDbContext();
 		}
 
 		public Cliente Get(string cpf)
-			=> context.Clientes.FirstOrDefault(x => x.Cpf == cpf);
-
-		public Cliente Get(int id)
-			=> context.Clientes.FirstOrDefault(x => x.Id == id);
-
-		public IEnumerable<Cliente> Get()
-			=> context.Clientes.ToList();
-
-		public void Update(Cliente cliente)
 		{
-			context.Clientes.Update(cliente);
-			context.SaveChanges();
+			try
+			{
+				return _context.Clientes.FirstOrDefault(x => x.Cpf == cpf);
+			}
+			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível acessar cliente. Verifique a conexão."); }
+
+			return null;
 		}
 
-		public void Delete(Cliente cliente)
-		{
-			context.Clientes.Remove(cliente);
-			context.SaveChanges();
-		}
 	}
 }

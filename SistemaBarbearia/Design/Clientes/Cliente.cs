@@ -36,10 +36,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnCadastro_Click(object sender, EventArgs e)
 		{
-			var cadastro = new frmCadastro();
-			cadastro.ShowDialog();
-
-			if (cadastro.DialogResult == DialogResult.OK)
+			if (new frmCadastro().DialogResult == DialogResult.OK)
 				GetDataTable();
 		}
 

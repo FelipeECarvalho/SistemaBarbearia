@@ -19,13 +19,13 @@ namespace SistemaBarbearia.Design
 		private void lblAgendar_Click(object sender, EventArgs e)
 		{
 			new frmAgendar().Show();
-			this.Close();
+			this.Hide();
 		}
 
 		private void lblCliente_Click(object sender, EventArgs e)
 		{
 			new frmCliente().Show();
-			this.Close();
+			this.Hide();
 		}
 
 		private void frmMenu_Load(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace SistemaBarbearia.Design
 		private void lblAgendamentos_Click(object sender, EventArgs e)
 		{
 			new frmAgendamentos().Show();
-			this.Close();
+			this.Hide();
 		}
 	}
 }
