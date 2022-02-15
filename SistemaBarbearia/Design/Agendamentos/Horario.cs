@@ -25,7 +25,7 @@ namespace SistemaBarbearia.Design
 
 		private void frmHorario_Load(object sender, EventArgs e)
 		{
-			var agendamentosDoDia = _agendamentoControle.GetDatasAgendadas(_dataEscolhida).ToList();
+			var agendamentosDoDia = _agendamentoControle.GetDatasAgendadas(_dataEscolhida);
 
 			var diaAtual = DateTime.Now.Date;
 			var horaAtual = DateTime.Now.Hour;
@@ -68,11 +68,11 @@ namespace SistemaBarbearia.Design
 			int horaMin = int.Parse(button.Text.Substring(0, 2));
 			RetornoHorario = horaMin;
 			this.DialogResult = DialogResult.OK;
+			this.Close();
 		}
 
 		private void btn1_Click(object sender, EventArgs e)
 		{
-
 			GeraData(btn1);
 		}
 

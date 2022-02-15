@@ -4,9 +4,9 @@ namespace SistemaBarbearia.Controle
 {
 	class ControleBase
 	{
-		protected void OnControleExceptionRaised(string mensagem)
+		protected void OnControleExceptionRaised(string mensagem, string form)
 		{
-			MessageBox.Show(mensagem, "ControleException", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(mensagem, $"{form}Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 	}
 }

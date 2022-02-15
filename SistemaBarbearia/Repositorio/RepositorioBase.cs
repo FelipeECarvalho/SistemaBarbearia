@@ -5,7 +5,7 @@ namespace SistemaBarbearia.Repositorio
 {
 	class RepositorioBase
 	{
-		protected readonly BarbeariaDbContext context;
+		protected readonly BarbeariaDbContext context = new BarbeariaDbContext();
 
 		protected void OnRepositorioExceptionRaised(string mensagem)
 		{

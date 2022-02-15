@@ -1,5 +1,7 @@
 ﻿using SistemaBarbearia.Controle;
 using System;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -17,25 +19,33 @@ namespace SistemaBarbearia.Design
 		private void lblAgendar_Click(object sender, EventArgs e)
 		{
 			new frmAgendar().Show();
-			this.Hide();
+			this.Close();
 		}
 
 		private void lblCliente_Click(object sender, EventArgs e)
 		{
 			new frmCliente().Show();
-			this.Hide();
+			this.Close();
 		}
 
 		private void frmMenu_Load(object sender, EventArgs e)
 		{
-			lblNome.Text += " " + Program.Adm.Nome;
-			dgvAgendamentos.DataSource = _agendamentoControle.GetMenu(DateTime.Now);
+			lblNome.Text += Program.Adm.Nome;
+			var agendamentos = _agendamentoControle.GetMenu(DateTime.Today);
+
+			dgvAgendamentos.Columns.Add("Nome", "Nome");
+			dgvAgendamentos.Columns.Add("Data", "Data");
+			
+			foreach (var agendamento in agendamentos) 
+			{
+				dgvAgendamentos.Rows.Add(agendamento.Cliente.Nome, agendamento.Data.ToString("d"));
+			}
 		}
 
 		private void lblAgendamentos_Click(object sender, EventArgs e)
 		{
 			new frmAgendamentos().Show();
-			this.Hide();
+			this.Close();
 		}
 	}
 }

@@ -7,8 +7,7 @@ namespace SistemaBarbearia.Modelo
 	{
 		public int Id { get; set; }
 		public string Descricao { get; set; }
-
-		public readonly decimal Valor;
+		public decimal Valor { get; set; }
 
 		public override string ToString()
 		{

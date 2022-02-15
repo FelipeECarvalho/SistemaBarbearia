@@ -17,8 +17,8 @@ namespace SistemaBarbearia.Design.Agendamentos
 
 		private void btnCadastrar_Click(object sender, EventArgs e)
 		{
-			var servico = new Servico(txbDescricao.Text, decimal.Parse(txbValor.Text));
-			_servicoControle.Create(servico);
+			//var servico = new Servico(txbDescricao.Text, decimal.Parse(txbValor.Text));
+			//_servicoControle.Create(servico);
 
 			this.DialogResult = DialogResult.OK;
 			this.Close();

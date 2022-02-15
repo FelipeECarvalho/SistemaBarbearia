@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SistemaBarbearia.Modelo;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,24 @@ namespace SistemaBarbearia.Repositorio
 		}
 
 		public IEnumerable<Agendamento> GetMenuList(DateTime data)
-			=> context.Agendamentos
-			.Include(x => x.Cliente)
-			.Where(x => x.Data.Date == data.Date);
+		{
+			try
+			{
+				return context.Agendamentos
+				.AsNoTracking()
+				.Include(x => x.Cliente)
+				.Where(x => x.Data.Date == data)
+				.ToList();
+			}
+			catch (SqlException) { OnRepositorioExceptionRaised("Erro ao acessar os dados. Tente novamente."); }
+
+			return null;
+		}
 
 
 		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)
 			=> context.Agendamentos
+			.AsNoTracking()
 			.Select(x => x.Data)
 			.Where(x => x.Date == data.Date);
 
