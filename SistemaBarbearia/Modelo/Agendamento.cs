@@ -12,6 +12,7 @@ namespace SistemaBarbearia.Modelo
 
 		[ForeignKey("IdCliente")]
 		public Cliente Cliente { get; set; }
+		public string NomeCliente { get { return Cliente.Nome; } }
 		public DateTime Data { get; set; }
 		public decimal ValorTotal { get; set; }
 

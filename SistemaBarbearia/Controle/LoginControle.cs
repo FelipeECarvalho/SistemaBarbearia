@@ -16,12 +16,12 @@ namespace SistemaBarbearia.Controle
 			try
 			{
 				var adm = _loginRepositorio.Acessar(login, senha);
-				Program.Adm = adm ?? throw new Exception();
+				Program.Adm = adm ?? throw new NullReferenceException();
 
 				new frmMenu().Show();
 				form.Hide();
 			}
-			catch (Exception) { OnControleExceptionRaised("Usuário ou senha inválidos", "Login"); }
+			catch (NullReferenceException) { OnControleExceptionRaised("Usuário ou senha inválidos", "Login"); }
 		}
 	}
 }

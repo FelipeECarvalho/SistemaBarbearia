@@ -46,7 +46,6 @@ namespace SistemaBarbearia.Design
 					return;
 				}
 
-				dgvAgendamentos.DataSource = null;
 				dgvAgendamentos.DataSource = _agendamentoControle.GetFull(txbNome.Text);
 			}
 
@@ -92,8 +91,11 @@ namespace SistemaBarbearia.Design
 		}
 		private void ZerarTable()
 		{
-			dgvAgendamentos.DataSource = null;
 			dgvAgendamentos.DataSource = _agendamentoControle.GetWithClientes();
+			dgvAgendamentos.Columns["Id"].Visible = false;
+			dgvAgendamentos.Columns["Cliente"].Visible = false;
+			dgvAgendamentos.Columns["IdCliente"].Visible = false;
+			dgvAgendamentos.Columns["NomeCliente"].HeaderText = "Nome";
 		}
 	}
 }

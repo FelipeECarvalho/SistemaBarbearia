@@ -38,7 +38,7 @@ namespace SistemaBarbearia.Design
 			
 			foreach (var agendamento in agendamentos) 
 			{
-				dgvAgendamentos.Rows.Add(agendamento.Cliente.Nome, agendamento.Data.ToString("d"));
+				dgvAgendamentos.Rows.Add(agendamento.Cliente.Nome, agendamento.Data.ToString("g"));
 			}
 		}
 

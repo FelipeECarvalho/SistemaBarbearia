@@ -43,7 +43,7 @@ namespace SistemaBarbearia.Controle
 		{
 			try
 			{
-				return GetWithClientes().Select(x => x).Where(x => x.Cliente.Nome.Contains(param));
+				return GetWithClientes().Where(x => x.NomeCliente.ToLower().Contains(param.ToLower())).ToList();
 			}
 			catch (NullReferenceException) { OnControleExceptionRaised("Não foi possivel recuperar os agendamentos. Verifique os dados.", "Cliente"); }
 

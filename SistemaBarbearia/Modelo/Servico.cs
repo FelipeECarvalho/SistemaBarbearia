@@ -14,10 +14,10 @@ namespace SistemaBarbearia.Modelo
 			return $"{Descricao} - R${Valor:F2}";
 		}
 
-		public Servico(string descricao, string valor)
+		public Servico(string descricao, decimal valor)
 		{
 			Descricao = descricao;
-			Valor = decimal.Parse(valor);
+			Valor = valor;
 		}
 	}
 }

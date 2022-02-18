@@ -24,7 +24,7 @@ namespace SistemaBarbearia.Design
 			{
 				if (string.IsNullOrEmpty(txtBuscaCliente.Text))
 				{
-					dgvClientes.DataSource = _clienteControle.Get();
+					ZerarView();
 					return;
 				}
 
@@ -35,7 +35,7 @@ namespace SistemaBarbearia.Design
 
 		private void EscolherCliente_Load(object sender, EventArgs e)
 		{
-			dgvClientes.DataSource = _clienteControle.Get();
+			ZerarView();
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
@@ -52,6 +52,12 @@ namespace SistemaBarbearia.Design
 			this.DialogResult = DialogResult.OK;
 			this.Close();
 
+		}
+		private void ZerarView() 
+		{
+			dgvClientes.DataSource = _clienteControle.Get();
+			dgvClientes.Columns["Id"].Visible = false;
+			dgvClientes.Columns["Email"].Visible = false;
 		}
 	}
 }

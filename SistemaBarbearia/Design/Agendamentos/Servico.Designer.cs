@@ -33,8 +33,8 @@ namespace SistemaBarbearia.Design.Agendamentos
 			this.txbDescricao = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.txbValor = new System.Windows.Forms.MaskedTextBox();
 			this.btnCadastrar = new System.Windows.Forms.Button();
+			this.txbValor = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label2
@@ -75,14 +75,6 @@ namespace SistemaBarbearia.Design.Agendamentos
 			this.label1.TabIndex = 31;
 			this.label1.Text = "Valor R$";
 			// 
-			// txbValor
-			// 
-			this.txbValor.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txbValor.Location = new System.Drawing.Point(87, 93);
-			this.txbValor.Name = "txbValor";
-			this.txbValor.Size = new System.Drawing.Size(59, 25);
-			this.txbValor.TabIndex = 32;
-			// 
 			// btnCadastrar
 			// 
 			this.btnCadastrar.BackColor = System.Drawing.Color.Lime;
@@ -96,19 +88,29 @@ namespace SistemaBarbearia.Design.Agendamentos
 			this.btnCadastrar.UseVisualStyleBackColor = false;
 			this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
 			// 
+			// txbValor
+			// 
+			this.txbValor.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.txbValor.Location = new System.Drawing.Point(87, 92);
+			this.txbValor.Name = "txbValor";
+			this.txbValor.Size = new System.Drawing.Size(59, 25);
+			this.txbValor.TabIndex = 35;
+			this.txbValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbValor_KeyPress);
+			// 
 			// frmServico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(276, 201);
-			this.Controls.Add(this.btnCadastrar);
 			this.Controls.Add(this.txbValor);
+			this.Controls.Add(this.btnCadastrar);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.txbDescricao);
 			this.Controls.Add(this.label2);
 			this.Name = "frmServico";
 			this.Text = "Servico";
+			this.Load += new System.EventHandler(this.frmServico_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -120,7 +122,7 @@ namespace SistemaBarbearia.Design.Agendamentos
 		private System.Windows.Forms.TextBox txbDescricao;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.MaskedTextBox txbValor;
 		private System.Windows.Forms.Button btnCadastrar;
+		private System.Windows.Forms.TextBox txbValor;
 	}
 }

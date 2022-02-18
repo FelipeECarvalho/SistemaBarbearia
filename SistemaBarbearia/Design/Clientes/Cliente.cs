@@ -131,6 +131,7 @@ namespace SistemaBarbearia.Design
 		{
 			dgvClientes.DataSource = null;
 			dgvClientes.DataSource = _clienteControle.Get();
+			dgvClientes.Columns["Id"].Visible = false;
 		}
 
 		public void ZerarLabels() 

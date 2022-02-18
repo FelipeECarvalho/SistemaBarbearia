@@ -79,7 +79,7 @@ namespace SistemaBarbearia.Repositorio
 			{
 				using (_context = new BarbeariaDbContext())
 				{
-					_context.Agendamentos
+					return _context.Agendamentos
 					  .AsNoTracking()
 					  .Select(x => x.Data)
 					  .Where(x => x.Date == data.Date)

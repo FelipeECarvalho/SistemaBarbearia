@@ -17,11 +17,29 @@ namespace SistemaBarbearia.Design.Agendamentos
 
 		private void btnCadastrar_Click(object sender, EventArgs e)
 		{
-			var servico = new Servico(txbDescricao.Text, txbValor.Text);
-			if (!_servicoControle.Create(servico))
+			if (!_servicoControle.Create(txbDescricao.Text, txbValor.Text))
 				return;
 			this.DialogResult = DialogResult.OK;
 			this.Close();
+		}
+
+		private void txbValor_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+				(e.KeyChar != '.'))
+			{
+				e.Handled = true;
+			}
+
+			if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void frmServico_Load(object sender, EventArgs e)
+		{
+			txbValor.MaxLength = 6;
 		}
 	}
 }
