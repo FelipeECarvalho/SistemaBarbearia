@@ -27,6 +27,7 @@ namespace SistemaBarbearia.Design
 		{
 			var agendamentosDoDia = _agendamentoControle.GetDatasAgendadas(_dataEscolhida);
 
+
 			var diaAtual = DateTime.Now.Date;
 			var horaAtual = DateTime.Now.Hour;
 
@@ -45,22 +46,31 @@ namespace SistemaBarbearia.Design
 
 			foreach (var button in buttons)
 			{
-				var hora = int.Parse(button.Text.Substring(0, 2));
+				var horaBotao = int.Parse(button.Text.Substring(0, 2));
 
-				foreach (var horarioOcupado in agendamentosDoDia)
+				if (_dataEscolhida.Date < diaAtual || (horaBotao <= horaAtual && _dataEscolhida.Date == diaAtual))
 				{
-					if (horarioOcupado.Date == diaAtual && hora <= horaAtual)
+					button.BackColor = Color.Silver;
+					button.Enabled = false;
+				}
+			}
+
+			foreach (var button in buttons)
+			{
+				var horaBotao = int.Parse(button.Text.Substring(0, 2));
+				if (!(button.BackColor == Color.Silver))
+				{
+					foreach (var horario in agendamentosDoDia)
 					{
-						button.BackColor = Color.Silver;
-						button.Enabled = false;
-					}
-					if (hora == horarioOcupado.Hour)
-					{
-						button.BackColor = Color.Silver;
-						button.Enabled = false;
+						if (horario.Hour == horaBotao)
+						{
+							button.BackColor = Color.Silver;
+							button.Enabled = false;
+						}
 					}
 				}
 			}
+
 		}
 
 		private void GeraData(Button button)

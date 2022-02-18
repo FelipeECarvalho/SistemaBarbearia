@@ -9,14 +9,17 @@ namespace SistemaBarbearia.Repositorio
 	{
 		public LoginRepositorio() 
 		{
-			_context = new BarbeariaDbContext();
 		}
 		public Administrador Acessar(string usuario, string senha)
 		{
 			try
 			{
-				return _context.Administradores
-				.SingleOrDefault(x => x.Senha == senha && x.Usuario == usuario);
+				using (_context = new BarbeariaDbContext())
+				{
+
+					return _context.Administradores
+								.FirstOrDefault(x => x.Senha == senha && x.Usuario == usuario);
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Erro ao acessar os dados. Tente novamente."); }
 

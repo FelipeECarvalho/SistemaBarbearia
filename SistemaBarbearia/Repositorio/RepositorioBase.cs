@@ -16,8 +16,11 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				_context.Set<T>().Add(entidade);
-				Savechange();
+				using (_context = new BarbeariaDbContext())
+				{
+					_context.Set<T>().Add(entidade);
+					Savechange();
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível inserir. Verifique a conexão."); }
 		}
@@ -26,8 +29,11 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				_context.Set<T>().Remove(entidade);
-				Savechange();
+				using (_context = new BarbeariaDbContext())
+				{
+					_context.Set<T>().Remove(entidade);
+					Savechange();
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível deletar. Verifique a conexão."); }
 		}
@@ -36,8 +42,11 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				_context.Entry<T>(entidade).State= EntityState.Modified;
-				Savechange();
+				using (_context = new BarbeariaDbContext())
+				{
+					_context.Entry<T>(entidade).State = EntityState.Modified;
+					Savechange();
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível atualizar. Verifique a conexão."); }
 		}
@@ -46,7 +55,10 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				return _context.Set<T>().Select(a => a).ToList();
+				using (_context = new BarbeariaDbContext())
+				{
+					return _context.Set<T>().Select(a => a).ToList();
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível ler. Verifique a conexão."); }
 
@@ -57,7 +69,10 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				return _context.Set<T>().Find(id);
+				using (_context = new BarbeariaDbContext())
+				{
+					return _context.Set<T>().Find(id);
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível ler. Verifique a conexão."); }
 
@@ -68,7 +83,7 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				return _context.SaveChanges();
+					return _context.SaveChanges();
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível salvar! Tente novamente."); }
 

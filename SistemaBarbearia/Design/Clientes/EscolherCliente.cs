@@ -22,6 +22,12 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
+				if (string.IsNullOrEmpty(txtBuscaCliente.Text))
+				{
+					dgvClientes.DataSource = _clienteControle.Get();
+					return;
+				}
+
 				var clientes = _clienteControle.FindClientes(txtBuscaCliente.Text);
 				dgvClientes.DataSource = clientes;
 			}

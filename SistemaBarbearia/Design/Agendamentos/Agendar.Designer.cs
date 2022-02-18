@@ -179,9 +179,9 @@ namespace SistemaBarbearia.Design
 			this.cklServicos.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.cklServicos.Font = new System.Drawing.Font("Mongolian Baiti", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.cklServicos.FormattingEnabled = true;
-			this.cklServicos.Location = new System.Drawing.Point(62, 382);
+			this.cklServicos.Location = new System.Drawing.Point(25, 382);
 			this.cklServicos.Name = "cklServicos";
-			this.cklServicos.Size = new System.Drawing.Size(192, 100);
+			this.cklServicos.Size = new System.Drawing.Size(240, 100);
 			this.cklServicos.TabIndex = 29;
 			// 
 			// btnAgendar
@@ -250,7 +250,7 @@ namespace SistemaBarbearia.Design
 			this.lboServicosEscolhidos.ItemHeight = 16;
 			this.lboServicosEscolhidos.Location = new System.Drawing.Point(587, 287);
 			this.lboServicosEscolhidos.Name = "lboServicosEscolhidos";
-			this.lboServicosEscolhidos.Size = new System.Drawing.Size(192, 112);
+			this.lboServicosEscolhidos.Size = new System.Drawing.Size(206, 112);
 			this.lboServicosEscolhidos.TabIndex = 38;
 			// 
 			// btnHorario

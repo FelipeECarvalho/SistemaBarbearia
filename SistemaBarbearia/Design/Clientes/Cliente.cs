@@ -37,7 +37,10 @@ namespace SistemaBarbearia.Design
 
 		private void btnCadastro_Click(object sender, EventArgs e)
 		{
-			if (new frmCadastro().DialogResult == DialogResult.OK)
+			var cadastroCLiente = new frmCadastro();
+			cadastroCLiente.ShowDialog();
+
+			if (cadastroCLiente.DialogResult == DialogResult.OK)
 				GetDataTable();
 		}
 
@@ -49,7 +52,7 @@ namespace SistemaBarbearia.Design
 		private void btnExcluirCliente_Click(object sender, EventArgs e)
 		{
 			_clienteControle.Delete(_clienteEscolhido);
-			ZerarLabels();
+			ZerarUpdate();
 			GetDataTable();
 		}
 
@@ -70,6 +73,12 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
+				if (string.IsNullOrEmpty(txtBuscaCliente.Text))
+				{
+					GetDataTable();
+					return;
+				}
+
 				var clientes = _clienteControle.FindClientes(txtBuscaCliente.Text);
 				dgvClientes.DataSource = clientes;
 			}
@@ -79,12 +88,14 @@ namespace SistemaBarbearia.Design
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			ZerarUpdate();
+			GetDataTable();
 		}
 
 		private void btnOk_Click(object sender, EventArgs e)
 		{
 			_clienteControle.Update(_clienteEscolhido);
 			GetDataTable();
+			ZerarUpdate();
 		}
 
 		private void ZerarUpdate()
@@ -128,26 +139,27 @@ namespace SistemaBarbearia.Design
 			txbCpf.Text = "";
 			txbTelefone.Text = "";
 			txbEmail.Text = "";
+			_clienteEscolhido = new Cliente();
 		}
 
 		private void txbNome_TextChanged(object sender, EventArgs e)
 		{
-			_clienteEscolhido.SetNome(txbNome.Text);
+			_clienteEscolhido.Nome = txbNome.Text;
 		}
 
 		private void txbEmail_TextChanged(object sender, EventArgs e)
 		{
-			_clienteEscolhido.SetEmail(txbEmail.Text);
+			_clienteEscolhido.Email = txbEmail.Text;
 		}
 
 		private void txbTelefone_TextChanged(object sender, EventArgs e)
 		{
-			_clienteEscolhido.SetTelefone(txbTelefone.Text);
+			_clienteEscolhido.Telefone = txbTelefone.Text;
 		}
 
 		private void txbCpf_TextChanged(object sender, EventArgs e)
 		{
-			_clienteEscolhido.SetCpf(txbCpf.Text);
+			_clienteEscolhido.Cpf = txbCpf.Text;
 		}
 	}
 }

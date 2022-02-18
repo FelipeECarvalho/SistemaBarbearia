@@ -5,6 +5,8 @@ namespace SistemaBarbearia.Data
 {
 	class BarbeariaDbContext : DbContext
 	{
+		public static string stringConnection = "Server=localhost,1433;Database=Barbearia;User Id=sa;Password=1q2w3e4r@#$;Trusted_Connection=False;TrustServerCertificate=True;";
+
 
 		public DbSet<Administrador> Administradores { get; set; }
 		public DbSet<Agendamento> Agendamentos { get; set; }
@@ -15,7 +17,7 @@ namespace SistemaBarbearia.Data
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Barbearia;User Id=sa;Password=1q2w3e4r@#$;Trusted_Connection=False;TrustServerCertificate=True;");
+			optionsBuilder.UseSqlServer(stringConnection);
 		}
 	}
 }

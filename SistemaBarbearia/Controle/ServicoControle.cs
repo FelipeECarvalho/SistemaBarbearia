@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
+using System;
 using System.Collections.Generic;
 
 namespace SistemaBarbearia.Controle
@@ -19,9 +20,19 @@ namespace SistemaBarbearia.Controle
 			return _servicoRepositorio.Get();
 		}
 
-		public void Create(Servico servico)
+		public bool Create(Servico servico)
 		{
-			_servicoRepositorio.Create(servico);
+			try
+			{
+				if (string.IsNullOrEmpty(servico.Descricao) || servico.Valor == 0) throw new Exception();
+				_servicoRepositorio.Create(servico);
+
+				OnControleSuccessfullyAction("Servico criado com sucesso!", "Servico");
+				return true;
+			}
+			catch (Exception) { OnControleExceptionRaised("Não foi possível inserir. Verifique os dados", "Servico"); }
+
+			return false;
 		}
 	}
 }

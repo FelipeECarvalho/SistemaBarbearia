@@ -2,6 +2,7 @@
 using SistemaBarbearia.Design.Agendamentos;
 using SistemaBarbearia.Modelo;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -11,7 +12,6 @@ namespace SistemaBarbearia.Design
 
 		private AgendamentoControle _agendamentoControle;
 		private ServicoControle _servicoControle;
-		private ClienteControle _clienteControle;
 		private Agendamento _agendamento;
 
 
@@ -20,18 +20,13 @@ namespace SistemaBarbearia.Design
 
 			_agendamentoControle = new AgendamentoControle();
 			_servicoControle = new ServicoControle();
-			_clienteControle = new ClienteControle();
 			_agendamento = new Agendamento();
 			InitializeComponent();
 		}
 
 		private void PovoarLista()
 		{
-			var servicos = _servicoControle.Get();
-			foreach (var servico in servicos)
-			{
-				cklServicos.Items.Add(servico);
-			}
+			cklServicos.Items.AddRange(_servicoControle.Get().ToArray());
 		}
 
 
@@ -39,7 +34,7 @@ namespace SistemaBarbearia.Design
 		{
 			PovoarLista();
 			_agendamento.Data = dtpData.Value.Date;
-			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
+			lblData.Text = "Data: " + dtpData.Value.ToString("d");
 		}
 
 		private void lblAgendamentos_Click(object sender, EventArgs e)
@@ -63,7 +58,7 @@ namespace SistemaBarbearia.Design
 
 		private void btnAgendar_Click(object sender, EventArgs e)
 		{
-			_agendamentoControle.Create(_agendamento, _agendamento.Servicos);
+			_agendamentoControle.Create(_agendamento);
 			ZerarResumo();
 		}
 
@@ -86,12 +81,11 @@ namespace SistemaBarbearia.Design
 			lboServicosEscolhidos.Items.Clear();
 			_agendamento.ValorTotal = 0;
 
-
 			foreach (Servico servico in cklServicos.CheckedItems)
 			{
-				_agendamento.ValorTotal += servico.Valor;
-				lboServicosEscolhidos.Items.Add(servico);
 				_agendamento.Servicos.Add(servico);
+				lboServicosEscolhidos.Items.Add(servico);
+				_agendamento.ValorTotal += servico.Valor;
 			}
 
 			lblTotal.Text = "Total R$" + _agendamento.ValorTotal.ToString("F2");
@@ -102,22 +96,22 @@ namespace SistemaBarbearia.Design
 		private void btnHorario_Click(object sender, EventArgs e)
 		{
 			var horario = new frmHorario(dtpData.Value);
+			horario.ShowDialog();
 			
-			if (horario.ShowDialog() == DialogResult.OK)
+			if (horario.DialogResult == DialogResult.OK)
 			{
 				var horarioEscolhido = horario.RetornoHorario;
 
 				_agendamento.Data = new DateTime(dtpData.Value.Year, dtpData.Value.Month, dtpData.Value.Day, horarioEscolhido, 00, 00);
 
-				lblHorario.Text = $"Horário: {_agendamento.Data.Hour.ToString()} horas";
+				lblHorario.Text = $"Horário: {_agendamento.Data.Hour} horas";
 			}
 		}
 
 		private void dtpData_ValueChanged(object sender, EventArgs e)
 		{
 			ZerarHorario();
-			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
-
+			lblData.Text = "Data: " + dtpData.Value.Date.ToString("d");
 		}
 
 		private void ZerarResumo()
@@ -125,7 +119,7 @@ namespace SistemaBarbearia.Design
 			_agendamento = new Agendamento();
 			lblTotal.Text = "Total R$";
 			ZerarHorario();
-			lblData.Text = "Data: " + dtpData.Value.Date.ToString("dd/MM/yyyy");
+			lblData.Text = "Data: " + dtpData.Value.Date.ToString("d");
 			txbCpf.Text = "";
 			txbNome.Text = "";
 			lboServicosEscolhidos.Items.Clear();
@@ -147,7 +141,6 @@ namespace SistemaBarbearia.Design
 		{
 			lblHorario.Text = "Horário: ";
 			_agendamento.Data = dtpData.Value.Date;
-
 		}
 	}
 }

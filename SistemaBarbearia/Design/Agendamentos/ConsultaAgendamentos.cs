@@ -1,21 +1,20 @@
 ﻿using SistemaBarbearia.Controle;
 using SistemaBarbearia.Modelo;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
 {
 	public partial class frmAgendamentos : Form
 	{
-		private int _linhaAtual = -1;
+		private Agendamento _agendamentoEscolhido;
 		private AgendamentoControle _agendamentoControle;
-		private ClienteControle _clienteControle;
 
 		public frmAgendamentos()
 		{
 			InitializeComponent();
 			_agendamentoControle = new AgendamentoControle();
-			_clienteControle = new ClienteControle();
 		}
 
 
@@ -41,6 +40,14 @@ namespace SistemaBarbearia.Design
 		{
 			if (e.KeyChar == (char)13)
 			{
+				if (string.IsNullOrEmpty(txbNome.Text))
+				{
+					ZerarTable();
+					return;
+				}
+
+				dgvAgendamentos.DataSource = null;
+				dgvAgendamentos.DataSource = _agendamentoControle.GetFull(txbNome.Text);
 			}
 
 		}
@@ -48,18 +55,19 @@ namespace SistemaBarbearia.Design
 		private void frmAgendamentos_Load(object sender, EventArgs e)
 		{
 			ZerarTable();
-
 		}
 
 
 		private void btnExcluirAgendamento_Click(object sender, EventArgs e)
 		{
-			_agendamentoControle.Delete((int)dgvAgendamentos.Rows[_linhaAtual].Cells["Id"].Value);
+			_agendamentoControle.Delete(_agendamentoEscolhido);
+			_agendamentoEscolhido = null;
 
 			txbClienteNome.Text = "";
 			txbClienteTelefone.Text = "";
 			txbData.Text = "";
 			txbValor.Text = "";
+			
 
 			lboServicosEscolhidos.Items.Clear();
 			ZerarTable();
@@ -70,28 +78,22 @@ namespace SistemaBarbearia.Design
 			if (e.RowIndex >= 0)
 			{
 				lboServicosEscolhidos.Items.Clear();
-				_linhaAtual = dgvAgendamentos.CurrentRow.Index;
 
-				var agendamento = dgvAgendamentos.SelectedRows[0].DataBoundItem as Agendamento;
+				_agendamentoEscolhido = dgvAgendamentos.SelectedRows[0].DataBoundItem as Agendamento;
 
-				var cliente = _clienteControle.Get(agendamento.IdCliente);
+				txbData.Text = _agendamentoEscolhido.Data.ToString("g");
+				txbClienteNome.Text = _agendamentoEscolhido.Cliente.Nome;
+				txbClienteTelefone.Text = _agendamentoEscolhido.Cliente.Telefone;
+				txbValor.Text = _agendamentoEscolhido.ValorTotal.ToString("F2");
 
-				txbData.Text = $"{agendamento.Data}";
-				txbClienteNome.Text = cliente.Nome;
-				txbClienteTelefone.Text = cliente.Telefone;
-				txbValor.Text = agendamento.ValorTotal.ToString("F2");
-
-				foreach (var servico in agendamento.Servicos)
-				{
-					lboServicosEscolhidos.Items.Add(servico.Descricao);
-				}
+				lboServicosEscolhidos.Items.AddRange(_agendamentoEscolhido.Servicos.ToArray());
 			}
 
 		}
 		private void ZerarTable()
 		{
 			dgvAgendamentos.DataSource = null;
-			dgvAgendamentos.DataSource = _agendamentoControle.Get();
+			dgvAgendamentos.DataSource = _agendamentoControle.GetWithClientes();
 		}
 	}
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SistemaBarbearia.Controle
 {
@@ -61,7 +62,8 @@ namespace SistemaBarbearia.Controle
 		{
 			try
 			{
-				if (cliente == null) throw new NullReferenceException();
+				if (string.IsNullOrEmpty(cliente.Cpf.Trim()) || string.IsNullOrEmpty(cliente.Nome.Trim()) || string.IsNullOrEmpty(cliente.Email.Trim()) || string.IsNullOrEmpty(cliente.Telefone.Trim())) throw new NullReferenceException();
+
 				_clienteRepositorio.Update(cliente);
 				OnControleSuccessfullyAction("Cliente atualizado com sucesso!", "Cliente");
 			}
@@ -72,17 +74,20 @@ namespace SistemaBarbearia.Controle
 		{
 			try
 			{
-				if (cliente == null) throw new NullReferenceException();
+				if (string.IsNullOrEmpty(cliente.Cpf)) throw new NullReferenceException();
+
+				if (MessageBox.Show("Tem certeza que deseja excluir o cliente?", "Exclusão", MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
+
 				_clienteRepositorio.Delete(cliente);
 				OnControleSuccessfullyAction("Cliente excluído com sucesso!", "Cliente");
 			}
 			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não encontrado. Verifique os dados.", "Cliente"); }
 		}
 
-		public IEnumerable<Cliente> FindClientes(string param) 
+		public List<Cliente> FindClientes(string param) 
 		{
 			if (string.IsNullOrEmpty(param)) return null;
-			return _clienteRepositorio.FindClientes(param);
+			return _clienteRepositorio.FindClientes(param).ToList();
 		}
 
 		public ClienteControle() => _clienteRepositorio = new ClienteRepositorio();

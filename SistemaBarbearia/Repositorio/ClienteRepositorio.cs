@@ -10,14 +10,16 @@ namespace SistemaBarbearia.Repositorio
 	{
 		public ClienteRepositorio() 
 		{
-			_context = new BarbeariaDbContext();
 		}
 
 		public Cliente Get(string cpf)
 		{
 			try
 			{
-				return _context.Clientes.FirstOrDefault(x => x.Cpf == cpf);
+				using (_context = new BarbeariaDbContext())
+				{
+					return _context.Clientes.FirstOrDefault(x => x.Cpf == cpf);
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível acessar cliente. Verifique a conexão."); }
 
@@ -28,7 +30,10 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-				return _context.Clientes.Where(x => x.Nome == param && x.Cpf == param).ToList();
+				using (_context = new BarbeariaDbContext())
+				{
+					return _context.Clientes.Where(x => x.Nome.Contains(param) || x.Cpf.Contains(param)).ToList();
+				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível acessar cliente. Verifique a conexão."); }
 

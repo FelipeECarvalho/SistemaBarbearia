@@ -10,37 +10,7 @@ namespace SistemaBarbearia.Modelo
 		public string Nome { get; set; }
 		public string Telefone { get; set; }
 		public string Email { get; set; }
-
-		public void SetNome(string nome)
-		{
-			if (!string.IsNullOrEmpty(nome))
-			{
-				Nome = nome;
-			}
-		}
-
-		public void SetEmail(string email)
-		{
-			if (!string.IsNullOrEmpty(email))
-			{
-				Email = email;
-			}
-		}
-
-		public void SetTelefone(string telefone)
-		{
-			if (!string.IsNullOrEmpty(telefone))
-			{
-				Telefone = telefone;
-			}
-		}
-		public void SetCpf(string cpf)
-		{
-			if (!string.IsNullOrEmpty(cpf))
-			{
-				Cpf = cpf;
-			}
-		}
+		public Cliente() { }
 
 		public Cliente(string cpf, string nome, string telefone, string email)
 		{
