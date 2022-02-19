@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SistemaBarbearia.Data;
 using SistemaBarbearia.Modelo;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaBarbearia.Repositorio
 {
@@ -10,20 +12,20 @@ namespace SistemaBarbearia.Repositorio
 		public LoginRepositorio() 
 		{
 		}
-		public Administrador Acessar(string usuario, string senha)
+		public async Task<Administrador> AcessarAsync(string usuario, string senha)
 		{
 			try
 			{
 				using (_context = new BarbeariaDbContext())
 				{
 
-					return _context.Administradores
-								.FirstOrDefault(x => x.Senha == senha && x.Usuario == usuario);
+					return await _context.Administradores
+								.FirstOrDefaultAsync(x => x.Senha == senha && x.Usuario == usuario);
 				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Erro ao acessar os dados. Tente novamente."); }
 
-			return null;
+			return await Task.FromResult<Administrador>(null);
 		}
 	}
 }

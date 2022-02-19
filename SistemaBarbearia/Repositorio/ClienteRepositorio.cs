@@ -1,8 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SistemaBarbearia.Data;
 using SistemaBarbearia.Modelo;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaBarbearia.Repositorio
 {
@@ -12,18 +14,18 @@ namespace SistemaBarbearia.Repositorio
 		{
 		}
 
-		public Cliente Get(string cpf)
+		public async Task<Cliente> GetAsync(string cpf)
 		{
 			try
 			{
 				using (_context = new BarbeariaDbContext())
 				{
-					return _context.Clientes.FirstOrDefault(x => x.Cpf == cpf);
+					return await _context.Clientes.FirstOrDefaultAsync(x => x.Cpf == cpf);
 				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível acessar cliente. Verifique a conexão."); }
 
-			return null;
+			return await Task.FromResult<Cliente>(null);
 		}
 
 		public IEnumerable<Cliente> FindClientes(string param) 

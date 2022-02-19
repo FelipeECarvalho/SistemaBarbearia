@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Controle
@@ -29,34 +30,11 @@ namespace SistemaBarbearia.Controle
 			return false;
 		}
 
-		public Cliente Get(string cpf)
-		{
-			try
-			{
-				if (string.IsNullOrEmpty(cpf)) throw new NullReferenceException();
-				return _clienteRepositorio.Get(cpf) ?? throw new NullReferenceException();
-			}
-			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não encontrado. Verifique os dados.", "Cliente"); }
-
-			return null;
-		}
-
-		public Cliente Get(int id)
-		{
-			try
-			{
-				if (id <= 0) throw new NullReferenceException();
-				return _clienteRepositorio.Get(id) ?? throw new NullReferenceException();
-			}
-			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não encontrado. Verifique os dados.", "Cliente"); }
-
-			return null;
-		}
-
 		public IEnumerable<Cliente> Get()
 		{
 			return _clienteRepositorio.Get();
 		}
+
 
 		public void Update(Cliente cliente)
 		{

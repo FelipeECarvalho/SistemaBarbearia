@@ -3,6 +3,7 @@ using SistemaBarbearia.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Controle
@@ -62,9 +63,9 @@ namespace SistemaBarbearia.Controle
 			return agendamentos;
 		}
 
-		public IEnumerable<Agendamento> GetMenu(DateTime data)
+		public async Task<List<Agendamento>> GetMenuAsync(DateTime data)
 		{
-			return _agendamentoRepositorio.GetMenuList(data);
+			return await _agendamentoRepositorio.GetMenuListAsync(data);
 		}
 
 		public IEnumerable<DateTime> GetDatasAgendadas(DateTime data)

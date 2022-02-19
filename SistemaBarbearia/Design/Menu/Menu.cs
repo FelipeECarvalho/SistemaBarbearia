@@ -31,12 +31,17 @@ namespace SistemaBarbearia.Design
 		private void frmMenu_Load(object sender, EventArgs e)
 		{
 			lblNome.Text += Program.Adm.Nome;
-			var agendamentos = _agendamentoControle.GetMenu(DateTime.Today);
+			DataTableFill();
+		}
+
+		private async void DataTableFill() 
+		{
+			var agendamentos = await _agendamentoControle.GetMenuAsync(DateTime.Today);
 
 			dgvAgendamentos.Columns.Add("Nome", "Nome");
 			dgvAgendamentos.Columns.Add("Data", "Data");
-			
-			foreach (var agendamento in agendamentos) 
+
+			foreach (var agendamento in agendamentos)
 			{
 				dgvAgendamentos.Rows.Add(agendamento.Cliente.Nome, agendamento.Data.ToString("g"));
 			}

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
+using System.Threading.Tasks;
 
 namespace SistemaBarbearia.Repositorio
 {
@@ -17,22 +18,22 @@ namespace SistemaBarbearia.Repositorio
 			_context = new BarbeariaDbContext();
 		}
 
-		public IEnumerable<Agendamento> GetMenuList(DateTime data)
+		public async Task<List<Agendamento>> GetMenuListAsync(DateTime data)
 		{
 			try
 			{
 				using (_context = new BarbeariaDbContext())
 				{
-					return _context.Agendamentos
+					return await _context.Agendamentos
 						.AsNoTracking()
 						.Include(x => x.Cliente)
 						.Where(x => x.Data.Date == data)
-						.ToList();
+						.ToListAsync();
 				}
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Erro ao acessar os dados. Tente novamente."); }
 
-			return new List<Agendamento>();
+			return await Task.FromResult<List<Agendamento>>(new List<Agendamento>());
 		}
 
 		public IEnumerable<Agendamento> GetWithClientes()

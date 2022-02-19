@@ -15,9 +15,14 @@ namespace SistemaBarbearia
 			_loginControle = new LoginControle();
 		}
 
-		private void btnEntrar_Click(object sender, EventArgs e)
+		private async void btnEntrar_Click(object sender, EventArgs e)
 		{
-			_loginControle.Login(txbUsuario.Text, txbSenha.Text, this);
+			await _loginControle.LoginAsync(txbUsuario.Text, txbSenha.Text);
+
+			if (Program.Adm == null) return;
+
+			new frmMenu().Show();
+			this.Hide();
 		}
 
 		private void btnSair_Click(object sender, EventArgs e) => this.Close();
