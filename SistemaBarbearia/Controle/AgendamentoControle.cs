@@ -13,7 +13,7 @@ namespace SistemaBarbearia.Controle
 		private readonly AgendamentoRepositorio _agendamentoRepositorio;
 		private readonly ServicoRepositorio _servicoRepositorio;
 
-		public AgendamentoControle() 
+		public AgendamentoControle()
 		{
 			_agendamentoRepositorio = new AgendamentoRepositorio();
 			_servicoRepositorio = new ServicoRepositorio();
@@ -24,7 +24,7 @@ namespace SistemaBarbearia.Controle
 		{
 			try
 			{
-				if (agendamento.Servicos.Count == 0 || agendamento.Cliente == null || agendamento.Data.Hour == 0) 
+				if (agendamento.Servicos.Count == 0 || agendamento.Cliente == null || agendamento.Data.Hour == 0)
 					throw new NullReferenceException();
 
 				_agendamentoRepositorio.CreateWithServicos(agendamento);
@@ -40,7 +40,7 @@ namespace SistemaBarbearia.Controle
 			return _agendamentoRepositorio.Get();
 		}
 
-		public IEnumerable<Agendamento> GetFull(string param) 
+		public IEnumerable<Agendamento> GetFull(string param)
 		{
 			try
 			{
@@ -56,7 +56,7 @@ namespace SistemaBarbearia.Controle
 		public IEnumerable<Agendamento> GetWithClientes()
 		{
 			var agendamentos = _agendamentoRepositorio.GetWithClientes();
-			foreach (var agendamento in agendamentos) 
+			foreach (var agendamento in agendamentos)
 			{
 				agendamento.InsertServico(_servicoRepositorio.GetByAgendamento(agendamento.Id).ToList());
 			}

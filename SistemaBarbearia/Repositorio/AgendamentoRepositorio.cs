@@ -1,19 +1,18 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SistemaBarbearia.Data;
 using SistemaBarbearia.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dapper;
-using Dapper.Contrib.Extensions;
 using System.Threading.Tasks;
 
 namespace SistemaBarbearia.Repositorio
 {
 	class AgendamentoRepositorio : RepositorioBase<Agendamento>
 	{
-		public AgendamentoRepositorio() 
+		public AgendamentoRepositorio()
 		{
 			_context = new BarbeariaDbContext();
 		}
@@ -52,7 +51,7 @@ namespace SistemaBarbearia.Repositorio
 			return new List<Agendamento>();
 		}
 
-		public void CreateWithServicos(Agendamento agendamento) 
+		public void CreateWithServicos(Agendamento agendamento)
 		{
 			try
 			{

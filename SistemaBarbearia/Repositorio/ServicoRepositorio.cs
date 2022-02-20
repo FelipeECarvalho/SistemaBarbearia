@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using SistemaBarbearia.Data;
 using SistemaBarbearia.Modelo;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SistemaBarbearia.Repositorio
 {
@@ -11,7 +10,7 @@ namespace SistemaBarbearia.Repositorio
 	{
 		public ServicoRepositorio() => _context = new BarbeariaDbContext();
 
-		public IEnumerable<Servico> GetByAgendamento(int id) 
+		public IEnumerable<Servico> GetByAgendamento(int id)
 		{
 			try
 			{

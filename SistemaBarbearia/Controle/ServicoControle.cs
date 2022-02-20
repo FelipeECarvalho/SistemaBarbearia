@@ -1,8 +1,8 @@
 ﻿using SistemaBarbearia.Modelo;
-using System.Globalization;
 using SistemaBarbearia.Repositorio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace SistemaBarbearia.Controle
 {
@@ -10,7 +10,7 @@ namespace SistemaBarbearia.Controle
 	{
 		private ServicoRepositorio _servicoRepositorio;
 
-		public ServicoControle() 
+		public ServicoControle()
 		{
 			_servicoRepositorio = new ServicoRepositorio();
 		}

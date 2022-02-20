@@ -1,9 +1,6 @@
-﻿using SistemaBarbearia.Design;
-using SistemaBarbearia.Modelo;
-using SistemaBarbearia.Repositorio;
+﻿using SistemaBarbearia.Repositorio;
 using System;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SistemaBarbearia.Controle
 {
@@ -17,7 +14,7 @@ namespace SistemaBarbearia.Controle
 		{
 			try
 			{
-				Program.Adm = await _loginRepositorio.AcessarAsync(login, senha) 
+				Program.Adm = await _loginRepositorio.AcessarAsync(login, senha)
 					?? throw new NullReferenceException();
 			}
 			catch (NullReferenceException) { OnControleExceptionRaised("Usuário ou senha inválidos", "Login"); }

@@ -1,7 +1,5 @@
 ﻿using SistemaBarbearia.Controle;
-using SistemaBarbearia.Modelo;
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design.Agendamentos

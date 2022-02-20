@@ -97,7 +97,7 @@ namespace SistemaBarbearia.Design
 		{
 			var horario = new frmHorario(dtpData.Value);
 			horario.ShowDialog();
-			
+
 			if (horario.DialogResult == DialogResult.OK)
 			{
 				var horarioEscolhido = horario.RetornoHorario;

@@ -1,11 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
-using SistemaBarbearia.Modelo;
+﻿using SistemaBarbearia.Modelo;
 using SistemaBarbearia.Repositorio;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Controle
@@ -18,7 +15,7 @@ namespace SistemaBarbearia.Controle
 		{
 			try
 			{
-				if (string.IsNullOrEmpty(cliente.Cpf.Trim()) || string.IsNullOrEmpty(cliente.Nome.Trim())|| string.IsNullOrEmpty(cliente.Email.Trim()) || string.IsNullOrEmpty(cliente.Telefone.Trim())) throw new NullReferenceException();
+				if (string.IsNullOrEmpty(cliente.Cpf.Trim()) || string.IsNullOrEmpty(cliente.Nome.Trim()) || string.IsNullOrEmpty(cliente.Email.Trim()) || string.IsNullOrEmpty(cliente.Telefone.Trim())) throw new NullReferenceException();
 
 				_clienteRepositorio.Create(cliente);
 
@@ -62,7 +59,7 @@ namespace SistemaBarbearia.Controle
 			catch (NullReferenceException) { OnControleExceptionRaised("Cliente não encontrado. Verifique os dados.", "Cliente"); }
 		}
 
-		public List<Cliente> FindClientes(string param) 
+		public List<Cliente> FindClientes(string param)
 		{
 			if (string.IsNullOrEmpty(param)) return null;
 			return _clienteRepositorio.FindClientes(param).ToList();

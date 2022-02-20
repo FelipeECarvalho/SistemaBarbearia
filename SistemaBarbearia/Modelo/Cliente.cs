@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaBarbearia.Modelo
 {
@@ -10,6 +11,7 @@ namespace SistemaBarbearia.Modelo
 		public string Nome { get; set; }
 		public string Telefone { get; set; }
 		public string Email { get; set; }
+		public List<Agendamento> Agendamentos { get; set; }
 		public Cliente() { }
 
 		public Cliente(string cpf, string nome, string telefone, string email)

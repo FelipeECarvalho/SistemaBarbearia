@@ -2,14 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaBarbearia.Data;
 using SistemaBarbearia.Modelo;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SistemaBarbearia.Repositorio
 {
 	class LoginRepositorio : RepositorioBase<Administrador>
 	{
-		public LoginRepositorio() 
+		public LoginRepositorio()
 		{
 		}
 		public async Task<Administrador> AcessarAsync(string usuario, string senha)

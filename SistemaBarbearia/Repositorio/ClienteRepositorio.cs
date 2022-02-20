@@ -10,7 +10,7 @@ namespace SistemaBarbearia.Repositorio
 {
 	class ClienteRepositorio : RepositorioBase<Cliente>
 	{
-		public ClienteRepositorio() 
+		public ClienteRepositorio()
 		{
 		}
 
@@ -28,7 +28,7 @@ namespace SistemaBarbearia.Repositorio
 			return await Task.FromResult<Cliente>(null);
 		}
 
-		public IEnumerable<Cliente> FindClientes(string param) 
+		public IEnumerable<Cliente> FindClientes(string param)
 		{
 			try
 			{

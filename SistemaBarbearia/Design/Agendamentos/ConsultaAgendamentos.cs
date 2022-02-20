@@ -1,7 +1,6 @@
 ﻿using SistemaBarbearia.Controle;
 using SistemaBarbearia.Modelo;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -66,7 +65,7 @@ namespace SistemaBarbearia.Design
 			txbClienteTelefone.Text = "";
 			txbData.Text = "";
 			txbValor.Text = "";
-			
+
 
 			lboServicosEscolhidos.Items.Clear();
 			ZerarTable();

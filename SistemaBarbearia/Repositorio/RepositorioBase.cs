@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SistemaBarbearia.Repositorio
 {
-	abstract class RepositorioBase<T> : IRepositorio<T> where T: class
+	abstract class RepositorioBase<T> : IRepositorio<T> where T : class
 	{
 		protected BarbeariaDbContext _context;
 
@@ -83,7 +83,7 @@ namespace SistemaBarbearia.Repositorio
 		{
 			try
 			{
-					return _context.SaveChanges();
+				return _context.SaveChanges();
 			}
 			catch (SqlException) { OnRepositorioExceptionRaised("Não foi possível salvar! Tente novamente."); }
 
@@ -94,6 +94,6 @@ namespace SistemaBarbearia.Repositorio
 		{
 			MessageBox.Show(mensagem, "ControleException", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
-		
+
 	}
 }

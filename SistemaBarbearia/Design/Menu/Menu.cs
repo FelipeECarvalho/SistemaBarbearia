@@ -1,7 +1,5 @@
 ﻿using SistemaBarbearia.Controle;
 using System;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -34,7 +32,7 @@ namespace SistemaBarbearia.Design
 			DataTableFill();
 		}
 
-		private async void DataTableFill() 
+		private async void DataTableFill()
 		{
 			var agendamentos = await _agendamentoControle.GetMenuAsync(DateTime.Today);
 

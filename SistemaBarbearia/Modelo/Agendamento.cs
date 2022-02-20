@@ -23,7 +23,7 @@ namespace SistemaBarbearia.Modelo
 			Servicos = new List<Servico>();
 		}
 
-		public void InsertServico(List<Servico> servico) 
+		public void InsertServico(List<Servico> servico)
 		{
 			Servicos.AddRange(servico);
 		}

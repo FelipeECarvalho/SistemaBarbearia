@@ -1,7 +1,6 @@
 ﻿using SistemaBarbearia.Controle;
 using SistemaBarbearia.Modelo;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -53,7 +52,7 @@ namespace SistemaBarbearia.Design
 			this.Close();
 
 		}
-		private void ZerarView() 
+		private void ZerarView()
 		{
 			dgvClientes.DataSource = _clienteControle.Get();
 			dgvClientes.Columns["Id"].Visible = false;

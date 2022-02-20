@@ -1,7 +1,6 @@
 ﻿using SistemaBarbearia.Controle;
 using SistemaBarbearia.Modelo;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace SistemaBarbearia.Design
@@ -134,7 +133,7 @@ namespace SistemaBarbearia.Design
 			dgvClientes.Columns["Id"].Visible = false;
 		}
 
-		public void ZerarLabels() 
+		public void ZerarLabels()
 		{
 			txbNome.Text = "";
 			txbCpf.Text = "";
